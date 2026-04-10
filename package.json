@@ -1,0 +1,25 @@
+{
+  "name": "instrutor_facil-",
+  "version": "1.0.0",
+  "description": " intermediadora entre alunos e instrutores de trânsito autônomos",
+  "homepage": "https://github.com/GrupoMinas-2/Instrutor_Facil#readme",
+  "bugs": {
+    "url": "https://github.com/GrupoMinas-2/Instrutor_Facil/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GrupoMinas-2/Instrutor_Facil.git"
+  },
+  "license": "ISC",
+  "author": "CarmoGabriel",
+  "type": "module",
+  "main": "teste.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^6.0.1"
+  }
+}

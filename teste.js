@@ -1,5 +1,5 @@
 // Instructors Data
-const instructors = [
+export const instructors = [
   {
     id: '1',
     name: 'Carlos Silva',
