@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de Instrutor - AutoAula</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-50">
+  <!-- Header -->
+  <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <!-- Logo -->
+        <a href="home.html" class="flex items-center gap-2">
+          <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+          </div>
+          <span class="font-bold text-xl">AutoAula</span>
+        </a>
+
+        <!-- Navigation - Desktop -->
+        <nav class="hidden md:flex items-center gap-8">
+          <a href="home.html" class="text-gray-700 hover:text-gray-900">Instrutores</a>
+          <a href="home.html#como-funciona" class="text-gray-700 hover:text-gray-900">Como Funciona</a>
+          <a href="#" class="text-gray-700 hover:text-gray-900">Ajuda</a>
+        </nav>
+
+        <!-- Actions -->
+        <div class="flex items-center gap-4">
+          <a href="cadastro-instrutor.html" class="hidden md:block px-4 py-2 text-blue-600 hover:text-blue-700 font-semibold">
+            Sou Instrutor
+          </a>
+          <button class="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+            </svg>
+            <span class="hidden md:inline">Entrar</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-br from-green-600 to-green-800 text-white py-12">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">
+          Torne-se um Instrutor AutoAula
+        </h1>
+        <p class="text-xl text-green-100">
+          Cadastre-se gratuitamente e comece a receber alunos hoje mesmo
+        </p>
+      </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="py-12 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+          <div class="text-center">
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Defina seu preço</h3>
+            <p class="text-gray-600">Você escolhe quanto cobrar por hora/aula</p>
+          </div>
+          <div class="text-center">
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Flexibilidade total</h3>
+            <p class="text-gray-600">Defina sua própria agenda e disponibilidade</p>
+          </div>
+          <div class="text-center">
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Mais alunos</h3>
+            <p class="text-gray-600">Alcance milhares de pessoas buscando aulas</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Registration Form -->
+    <section class="py-16 bg-gray-50">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-white rounded-xl shadow-lg p-8">
+          <h2 class="text-3xl font-bold mb-2">Cadastro de Instrutor</h2>
+          <p class="text-gray-600 mb-8">Preencha os dados abaixo para começar</p>
+
+          <form id="instructor-form" class="space-y-8">
+            <!-- Dados Pessoais -->
+            <div>
+              <h3 class="text-xl font-bold mb-4 pb-2 border-b">Dados Pessoais</h3>
+              
+              <div class="space-y-4">
+                <div>
+                  <label class="block text-sm font-semibold mb-2">Nome Completo *</label>
+                  <input 
+                    type="text" 
+                    id="name" 
+                    required
+                    placeholder="Digite seu nome completo"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-blue-600"
+                  />
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-sm font-semibold mb-2">Email *</label>
+                    <input 
+                      type="email" 
+                      id="email" 
+                      required
+                      placeholder="seu@email.com"
+                      class="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-blue-600"
+                    />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-semibold mb-2">Telefone *</label>
+                    <input 
+                      type="tel" 
+                      id="phone" 
+                      required
+                      placeholder="(11) 99999-9999"
+                      class="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-blue-600"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-sm font-semibold mb-2">Foto de Perfil *</label>
+                  <div class="flex items-center gap-4">
+                    <div id="photo-preview" class="w-24 h-24 bg-gray-200 rounded-lg flex items-center justify-center overflow-hidden">
+                      <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                      </svg>
+                    </div>
+                    <div class="flex-1">
+                      <input 
+                        type="file" 
+                        id="photo" 
+                        accept="image/*"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-blue-600"
+                      />
+                      <p class="text-sm text-gray-500 mt-1">Foto profissional, formato JPG ou PNG</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-sm font-semibold mb-2">Localização *</label>
+                  <input 
+                    type="text" 
+                    id="location" 
+                    required
+                    placeholder="Ex: São Paulo - Zona Sul"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-blue-600"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Experiência Profissional -->
+            <div>
+              <h3 class="text-xl font-bold mb-4 pb-2 border-b">Experiência Profissional</h3>
+              
+              <div class="space-y-4">
+                <div>
+                  <label class="block text-sm font-semibold mb-2">Tempo de Carreira (anos) *</label>
+                  <input 
+                    type="number" 
+                    id="experience" 
+                    required
+                    min="0"
+                    placeholder="Ex: 10"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-green-600"
+                  />
+                </div>
+
+                <div>
+                  <label class="block text-sm font-semibold mb-2">Categorias de CNH *</label>
+                  <div class="flex flex-wrap gap-3">
+                    <label class="flex items-center gap-2 px-4 py-2 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-green-600">
+                      <input type="checkbox" name="category" value="A" class="w-4 h-4 text-green-600" />
+                      <span>Categoria A</span>
+                    </label>
+                    <label class="flex items-center gap-2 px-4 py-2 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-green-600">
+                      <input type="checkbox" name="category" value="B" class="w-4 h-4 text-green-600" />
+                      <span>Categoria B</span>
+                    </label>
+                    <label class="flex items-center gap-2 px-4 py-2 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-green-600">
+                      <input type="checkbox" name="category" value="AB" class="w-4 h-4 text-green-600" />
+                      <span>Categoria AB</span>
+                    </label>
+                    <label class="flex items-center gap-2 px-4 py-2 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-green-600">
+                      <input type="checkbox" name="category" value="C" class="w-4 h-4 text-green-600" />
+                      <span>Categoria C</span>
+                    </label>
+                    <label class="flex items-center gap-2 px-4 py-2 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-green-600">
+                      <input type="checkbox" name="category" value="D" class="w-4 h-4 text-green-600" />
+                      <span>Categoria D</span>
+                    </label>
+                    <label class="flex items-center gap-2 px-4 py-2 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-green-600">
+                      <input type="checkbox" name="category" value="E" class="w-4 h-4 text-green-600" />
+                      <span>Categoria E</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-sm font-semibold mb-2">Especializações *</label>
+                  <div class="space-y-2">
+                    <label class="flex items-center gap-2">
+                      <input type="checkbox" name="specialty" value="Primeira Habilitação" class="w-4 h-4 text-green-600" />
+                      <span>Primeira Habilitação</span>
+                    </label>
+                    <label class="flex items-center gap-2">
+                      <input type="checkbox" name="specialty" value="Reciclagem" class="w-4 h-4 text-green-600" />
+                      <span>Reciclagem</span>
+                    </label>
+                    <label class="flex items-center gap-2">
+                      <input type="checkbox" name="specialty" value="Direção Defensiva" class="w-4 h-4 text-green-600" />
+                      <span>Direção Defensiva</span>
+                    </label>
+                    <label class="flex items-center gap-2">
+                      <input type="checkbox" name="specialty" value="Baliza" class="w-4 h-4 text-green-600" />
+                      <span>Baliza</span>
+                    </label>
+                    <label class="flex items-center gap-2">
+                      <input type="checkbox" name="specialty" value="Estacionamento" class="w-4 h-4 text-green-600" />
+                      <span>Estacionamento</span>
+                    </label>
+                    <label class="flex items-center gap-2">
+                      <input type="checkbox" name="specialty" value="Direção Noturna" class="w-4 h-4 text-green-600" />
+                      <span>Direção Noturna</span>
+                    </label>
+                    <label class="flex items-center gap-2">
+                      <input type="checkbox" name="specialty" value="Estradas" class="w-4 h-4 text-green-600" />
+                      <span>Estradas e Rodovias</span>
+                    </label>
+                    <label class="flex items-center gap-2">
+                      <input type="checkbox" name="specialty" value="Terceira Idade" class="w-4 h-4 text-green-600" />
+                      <span>Terceira Idade</span>
+                    </label>
+                    <label class="flex items-center gap-2">
+                      <input type="checkbox" name="specialty" value="Motoristas Iniciantes" class="w-4 h-4 text-green-600" />
+                      <span>Motoristas Iniciantes</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-sm font-semibold mb-2">Sobre Você *</label>
+                  <textarea 
+                    id="bio" 
+                    required
+                    rows="4"
+                    placeholder="Conte um pouco sobre sua experiência como instrutor, metodologia de ensino e diferenciais..."
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-green-600 resize-none"
+                  ></textarea>
+                  <p class="text-sm text-gray-500 mt-1">Mínimo 100 caracteres</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Documentação -->
+            <div>
+              <h3 class="text-xl font-bold mb-4 pb-2 border-b">Documentação e Credenciais *</h3>
+              
+              <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6">
+                <div class="flex gap-3">
+                  <svg class="w-5 h-5 text-yellow-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                  </svg>
+                  <div>
+                    <p class="text-sm text-yellow-800 font-semibold">Documentos Obrigatórios</p>
+                    <p class="text-sm text-yellow-700 mt-1">
+                      Para garantir a segurança dos alunos, é necessário enviar documentos que comprovem sua habilitação como instrutor de trânsito.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="space-y-6">
+                <div>
+                  <label class="block text-sm font-semibold mb-2">
+                    Credencial de Instrutor *
+                    <span class="text-gray-500 font-normal">(Credenciamento emitido pelo Detran)</span>
+                  </label>
+                  <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 hover:border-green-600 transition-colors">
+                    <div class="flex flex-col items-center gap-3">
+                      <div id="credential-preview" class="w-full max-w-xs h-48 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden">
+                        <svg class="w-16 h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                      </div>
+                      <div class="text-center">
+                        <input 
+                          type="file" 
+                          id="credential" 
+                          accept="image/*,.pdf"
+                          required
+                          class="hidden"
+                        />
+                        <label 
+                          for="credential" 
+                          class="cursor-pointer inline-flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
+                        >
+                          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+                          </svg>
+                          Selecionar Arquivo
+                        </label>
+                        <p class="text-sm text-gray-500 mt-2">Formatos aceitos: JPG, PNG ou PDF (máx. 5MB)</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-sm font-semibold mb-2">
+                    Licença do Veículo para Instrução *
+                    <span class="text-gray-500 font-normal">(CRLV com autorização para instrução)</span>
+                  </label>
+                  <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 hover:border-green-600 transition-colors">
+                    <div class="flex flex-col items-center gap-3">
+                      <div id="license-preview" class="w-full max-w-xs h-48 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden">
+                        <svg class="w-16 h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                      </div>
+                      <div class="text-center">
+                        <input 
+                          type="file" 
+                          id="vehicle-license" 
+                          accept="image/*,.pdf"
+                          required
+                          class="hidden"
+                        />
+                        <label 
+                          for="vehicle-license" 
+                          class="cursor-pointer inline-flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
+                        >
+                          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+                          </svg>
+                          Selecionar Arquivo
+                        </label>
+                        <p class="text-sm text-gray-500 mt-2">Formatos aceitos: JPG, PNG ou PDF (máx. 5MB)</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <div class="flex gap-3">
+                    <svg class="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <div>
+                      <p class="text-sm text-blue-800 font-semibold">Dica de Segurança</p>
+                      <p class="text-sm text-blue-700 mt-1">
+                        Certifique-se de que os documentos estejam legíveis e válidos. Nossa equipe verificará todas as informações antes da aprovação do cadastro.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Veículo -->
+            <div>
+              <h3 class="text-xl font-bold mb-4 pb-2 border-b">Veículo</h3>
+              
+              <div class="space-y-4">
+                <div>
+                  <label class="flex items-center gap-2 mb-4">
+                    <input type="checkbox" id="has-car" class="w-4 h-4 text-blue-600" />
+                    <span class="font-semibold">Possuo veículo próprio para as aulas</span>
+                  </label>
+                </div>
+
+                <div id="car-details" class="space-y-4 hidden">
+                  <div>
+                    <label class="block text-sm font-semibold mb-2">Modelo do Veículo</label>
+                    <input 
+                      type="text" 
+                      id="car-model" 
+                      placeholder="Ex: Honda Civic 2022"
+                      class="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-blue-600"
+                    />
+                  </div>
+
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label class="block text-sm font-semibold mb-2">Placa</label>
+                      <input 
+                        type="text" 
+                        id="car-plate" 
+                        placeholder="ABC-1234"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-blue-600"
+                      />
+                    </div>
+                    <div>
+                      <label class="block text-sm font-semibold mb-2">Ano</label>
+                      <input 
+                        type="number" 
+                        id="car-year" 
+                        min="1990"
+                        max="2026"
+                        placeholder="2022"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-blue-600"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label class="block text-sm font-semibold mb-2">Características do Veículo</label>
+                    <div class="space-y-2">
+                      <label class="flex items-center gap-2">
+                        <input type="checkbox" name="car-feature" value="Ar condicionado" class="w-4 h-4 text-blue-600" />
+                        <span>Ar condicionado</span>
+                      </label>
+                      <label class="flex items-center gap-2">
+                        <input type="checkbox" name="car-feature" value="Direção hidráulica" class="w-4 h-4 text-blue-600" />
+                        <span>Direção hidráulica</span>
+                      </label>
+                      <label class="flex items-center gap-2">
+                        <input type="checkbox" name="car-feature" value="Câmbio automático" class="w-4 h-4 text-blue-600" />
+                        <span>Câmbio automático</span>
+                      </label>
+                      <label class="flex items-center gap-2">
+                        <input type="checkbox" name="car-feature" value="Pedais duplos" class="w-4 h-4 text-blue-600" />
+                        <span>Pedais duplos (instrutor)</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Disponibilidade e Preços -->
+            <div>
+              <h3 class="text-xl font-bold mb-4 pb-2 border-b">Disponibilidade e Preços</h3>
+              
+              <div class="space-y-4">
+                <div>
+                  <label class="block text-sm font-semibold mb-2">Dias Disponíveis *</label>
+                  <div class="flex flex-wrap gap-3">
+                    <label class="flex items-center gap-2 px-4 py-2 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-blue-600">
+                      <input type="checkbox" name="availability" value="Segunda" class="w-4 h-4 text-blue-600" />
+                      <span>Segunda</span>
+                    </label>
+                    <label class="flex items-center gap-2 px-4 py-2 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-blue-600">
+                      <input type="checkbox" name="availability" value="Terça" class="w-4 h-4 text-blue-600" />
+                      <span>Terça</span>
+                    </label>
+                    <label class="flex items-center gap-2 px-4 py-2 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-blue-600">
+                      <input type="checkbox" name="availability" value="Quarta" class="w-4 h-4 text-blue-600" />
+                      <span>Quarta</span>
+                    </label>
+                    <label class="flex items-center gap-2 px-4 py-2 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-blue-600">
+                      <input type="checkbox" name="availability" value="Quinta" class="w-4 h-4 text-blue-600" />
+                      <span>Quinta</span>
+                    </label>
+                    <label class="flex items-center gap-2 px-4 py-2 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-blue-600">
+                      <input type="checkbox" name="availability" value="Sexta" class="w-4 h-4 text-blue-600" />
+                      <span>Sexta</span>
+                    </label>
+                    <label class="flex items-center gap-2 px-4 py-2 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-blue-600">
+                      <input type="checkbox" name="availability" value="Sábado" class="w-4 h-4 text-blue-600" />
+                      <span>Sábado</span>
+                    </label>
+                    <label class="flex items-center gap-2 px-4 py-2 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-blue-600">
+                      <input type="checkbox" name="availability" value="Domingo" class="w-4 h-4 text-blue-600" />
+                      <span>Domingo</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-sm font-semibold mb-2">Preço por Hora/Aula (R$) *</label>
+                  <input 
+                    type="number" 
+                    id="price" 
+                    required
+                    min="30"
+                    max="300"
+                    step="5"
+                    placeholder="Ex: 80"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-green-600"
+                  />
+                  <p class="text-sm text-gray-500 mt-1">Valor sugerido: R$ 70 - R$ 100</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Termos -->
+            <div class="border-t pt-6">
+              <label class="flex items-start gap-3">
+                <input type="checkbox" id="terms" required class="w-4 h-4 text-green-600 mt-1" />
+                <span class="text-sm text-gray-600">
+                  Concordo com os <a href="#" class="text-green-600 hover:underline">Termos de Uso</a> e 
+                  <a href="#" class="text-green-600 hover:underline">Política de Privacidade</a> da AutoAula. 
+                  Declaro que as informações fornecidas são verdadeiras e que possuo habilitação válida para instrutor de trânsito, conforme documentação enviada.
+                </span>
+              </label>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="flex gap-4">
+              <button 
+                type="button" 
+                onclick="window.location.href='home.html'"
+                class="flex-1 px-6 py-3 border-2 border-gray-300 rounded-lg hover:bg-gray-50 font-semibold"
+              >
+                Cancelar
+              </button>
+              <button 
+                type="submit" 
+                class="flex-1 px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 font-semibold"
+              >
+                Finalizar Cadastro
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-300 py-12 mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        <!-- Brand -->
+        <div>
+          <div class="flex items-center gap-2 mb-4">
+            <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+              </svg>
+            </div>
+            <span class="font-bold text-white text-lg">AutoAula</span>
+          </div>
+          <p class="text-sm">
+            Conectando alunos a instrutores de trânsito autônomos qualificados.
+          </p>
+        </div>
+
+        <!-- Links -->
+        <div>
+          <h4 class="text-white font-bold mb-4">Para Alunos</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="home.html" class="hover:text-white">Encontrar Instrutor</a></li>
+            <li><a href="home.html#como-funciona" class="hover:text-white">Como Funciona</a></li>
+            <li><a href="#" class="hover:text-white">Preços</a></li>
+            <li><a href="#" class="hover:text-white">Avaliações</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white font-bold mb-4">Para Instrutores</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="cadastro-instrutor.html" class="hover:text-white">Seja um Instrutor</a></li>
+            <li><a href="#" class="hover:text-white">Requisitos</a></li>
+            <li><a href="#" class="hover:text-white">Central de Ajuda</a></li>
+            <li><a href="#" class="hover:text-white">Termos de Uso</a></li>
+          </ul>
+        </div>
+
+        <!-- Social -->
+        <div>
+          <h4 class="text-white font-bold mb-4">Redes Sociais</h4>
+          <div class="flex gap-4">
+            <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+            <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z"/>
+                <path d="M12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom -->
+      <div class="border-t border-gray-800 pt-8 text-sm text-center">
+        <p>&copy; 2026 AutoAula. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="cadastro-instrutor.js"></script>
+</body>
+</html>
