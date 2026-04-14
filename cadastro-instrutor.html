@@ -608,7 +608,59 @@
       </div>
     </div>
   </footer>
+  <script>
+  // Photo preview
+  document.getElementById('photo').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const preview = document.getElementById('photo-preview');
+        preview.innerHTML = `<img src="${e.target.result}" class="w-full h-full object-cover" />`;
+      };
+      reader.readAsDataURL(file);
+    }
+  });
 
-  <script src="cadastro-instrutor.js"></script>
+  // Credential preview
+  document.getElementById('credential').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (file) {
+      const preview = document.getElementById('credential-preview');
+      if (file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          preview.innerHTML = `<img src="${e.target.result}" class="w-full h-full object-cover" />`;
+        };
+        reader.readAsDataURL(file);
+      } else {
+        preview.innerHTML = `<p>${file.name}</p>`;
+      }
+    }
+  });
+
+  // Vehicle license preview
+  document.getElementById('vehicle-license').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (file) {
+      const preview = document.getElementById('license-preview');
+      if (file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          preview.innerHTML = `<img src="${e.target.result}" class="w-full h-full object-cover" />`;
+        };
+        reader.readAsDataURL(file);
+      } else {
+        preview.innerHTML = `<p>${file.name}</p>`;
+      }
+    }
+  });
+
+  // Form submit
+  document.getElementById('instructor-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    alert("Cadastro enviado com sucesso!");
+  });
+</script>
 </body>
 </html>
