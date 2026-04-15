@@ -1,6 +1,6 @@
 import sqlite3 from 'sqlite3';
 import { open } from 'sqlite';
-import {instructors} from '../intrutores.js'
+import {instructors} from '../../intrutores.js'
 
 let db = undefined
 
