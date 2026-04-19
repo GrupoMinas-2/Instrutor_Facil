@@ -1,0 +1,200 @@
+/* ============================================
+   Layout do painel do instrutor (compartilha
+   estrutura entre todas as páginas /instrutor*)
+   ============================================ */
+
+.instructor-layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  min-height: 100vh;
+}
+
+.sidebar {
+  background: var(--color-text);
+  color: white;
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+.sidebar .brand { color: white; padding: 0 0.5rem; margin-bottom: 1.5rem; }
+.sidebar-nav { display: flex; flex-direction: column; gap: 0.25rem; flex: 1; }
+.sidebar-nav a {
+  display: flex; align-items: center; gap: 0.75rem;
+  padding: 0.7rem 0.85rem;
+  border-radius: var(--radius-md);
+  color: rgba(255,255,255,0.7);
+  font-size: 0.9rem; font-weight: 500;
+  transition: all var(--transition);
+}
+.sidebar-nav a:hover { background: rgba(255,255,255,0.06); color: white; }
+.sidebar-nav a.is-active {
+  background: var(--color-primary);
+  color: white;
+}
+.sidebar-nav a span { font-size: 1.05rem; }
+.sidebar-logout {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.5);
+  padding: 0.75rem 0.85rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  margin-top: auto;
+}
+.sidebar-logout:hover { color: white; }
+
+.instructor-main {
+  padding: 2.5rem 2.5rem 4rem;
+  max-width: 1100px;
+  width: 100%;
+}
+
+.instructor-header { margin-bottom: 2rem; }
+.instructor-header h1 { font-size: 1.8rem; letter-spacing: -0.02em; }
+.instructor-header p { color: var(--color-text-muted); margin-top: 0.25rem; }
+
+.section-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 1.25rem;
+}
+.section-header h2 { font-size: 1.2rem; }
+
+/* KPIs */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.kpi {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  display: flex; flex-direction: column; gap: 0.25rem;
+}
+.kpi__label { font-size: 0.8rem; color: var(--color-text-soft); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+.kpi__value { font-family: var(--font-display); font-size: 1.85rem; color: var(--color-text); }
+.kpi__hint { font-size: 0.8rem; color: var(--color-text-muted); }
+
+/* Lista de aulas */
+.lesson-row {
+  display: grid;
+  grid-template-columns: 80px 1fr auto;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--color-border);
+  align-items: center;
+}
+.lesson-row:last-child { border-bottom: none; }
+.lesson-time {
+  text-align: center;
+  font-family: var(--font-display);
+}
+.lesson-time strong { display: block; font-size: 1.15rem; color: var(--color-primary); }
+.lesson-time span { font-size: 0.78rem; color: var(--color-text-soft); }
+.lesson-info strong { display: block; }
+.lesson-info span { font-size: 0.85rem; color: var(--color-text-muted); }
+.lesson-actions { display: flex; gap: 0.5rem; align-items: center; }
+
+/* Atalhos */
+.shortcuts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.shortcut {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  display: flex; flex-direction: column; gap: 0.25rem;
+  transition: all var(--transition);
+}
+.shortcut:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+.shortcut strong { color: var(--color-text); }
+.shortcut span { font-size: 0.85rem; color: var(--color-text-muted); }
+
+/* ===== Tabs (agenda) ===== */
+.tabs {
+  display: flex;
+  gap: 0.4rem;
+  background: var(--color-surface-alt);
+  padding: 0.3rem;
+  border-radius: var(--radius-md);
+  margin-bottom: 1.5rem;
+  width: fit-content;
+}
+.tabs button {
+  padding: 0.55rem 1rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+.tabs button.is-active { background: white; color: var(--color-primary); box-shadow: var(--shadow-sm); }
+
+/* ===== Toggle switch ===== */
+.switch { position: relative; display: inline-block; width: 44px; height: 24px; }
+.switch input { display: none; }
+.switch-slider {
+  position: absolute; inset: 0;
+  background: var(--color-surface-alt);
+  border-radius: 999px;
+  transition: 0.2s;
+}
+.switch-slider::before {
+  content: ""; position: absolute; left: 3px; top: 3px;
+  width: 18px; height: 18px; border-radius: 50%;
+  background: white; transition: 0.2s;
+  box-shadow: var(--shadow-sm);
+}
+.switch input:checked + .switch-slider { background: var(--color-primary); }
+.switch input:checked + .switch-slider::before { transform: translateX(20px); }
+
+/* ===== Avaliações ===== */
+.review-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+}
+.review-card__head {
+  display: flex; justify-content: space-between; align-items: start;
+  margin-bottom: 0.75rem;
+}
+.review-card__stars { color: var(--color-accent); font-size: 1.1rem; }
+.review-card__reply {
+  background: var(--color-primary-soft);
+  border-left: 3px solid var(--color-primary);
+  padding: 0.85rem 1rem;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+  .instructor-layout { grid-template-columns: 1fr; }
+  .sidebar {
+    position: static; height: auto;
+    flex-direction: row; overflow-x: auto;
+    padding: 0.75rem 1rem;
+  }
+  .sidebar .brand { display: none; }
+  .sidebar-nav { flex-direction: row; flex-wrap: nowrap; }
+  .sidebar-nav a { white-space: nowrap; padding: 0.5rem 0.75rem; font-size: 0.85rem; }
+  .sidebar-nav a span { display: none; }
+  .sidebar-logout { display: none; }
+  .instructor-main { padding: 1.5rem 1rem 4rem; }
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  .shortcuts { grid-template-columns: 1fr; }
+}

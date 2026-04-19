@@ -1,0 +1,53 @@
+.card { margin-bottom: 1.25rem; }
+.card-title { font-size: 1.05rem; margin-bottom: 0.4rem; }
+.card-desc { color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1rem; }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+@media (max-width: 600px) { .grid-2 { grid-template-columns: 1fr; } }
+
+.package-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 0.75rem;
+  align-items: end;
+  padding: 0.75rem;
+  background: var(--color-surface-alt);
+  border-radius: var(--radius-md);
+  margin-bottom: 0.5rem;
+}
+.package-row .field { margin: 0; }
+.package-row button {
+  padding: 0.55rem 0.85rem;
+  background: var(--color-danger-soft);
+  color: var(--color-danger);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.add-row {
+  margin-top: 0.5rem;
+  background: transparent;
+  border: 1px dashed var(--color-border);
+  width: 100%;
+  padding: 0.7rem;
+  border-radius: var(--radius-md);
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+.add-row:hover { border-color: var(--color-primary); color: var(--color-primary); }
+
+.preview {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: var(--color-primary-soft);
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+}
+.preview strong { color: var(--color-primary); }
+.preview-line { display: flex; justify-content: space-between; padding: 0.25rem 0; }
+
+.form-actions {
+  display: flex; justify-content: flex-end;
+  margin-top: 1.5rem;
+}
