@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Buscar instrutores — AutoAula</title>
+  <link rel="stylesheet" href="../styles/base.css" />
+  <link rel="stylesheet" href="../styles/busca.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="index.html" class="brand">
+        <span class="brand__mark">i</span>
+        <span>Instrutor Fácil</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Início</a></li>
+          <li><a href="busca.html" class="is-active">Instrutores</a></li>
+          <li><a href="index.html#como-funciona">Como funciona</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <a href="instrutor.html" class="btn btn--ghost btn--sm">Sou instrutor</a>
+        <button class="btn btn--primary btn--sm">Entrar</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="search-page">
+    <aside class="filters">
+      <h2>Filtros</h2>
+
+      <div class="field">
+        <label class="field__label" for="f-location">Localização</label>
+        <input id="f-location" type="text" placeholder="Bairro ou cidade" />
+      </div>
+
+      <div class="field">
+        <label class="field__label">Categoria CNH</label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" value="A" data-filter="cat" /> A — Moto</label>
+          <label><input type="checkbox" value="B" data-filter="cat" /> B — Carro</label>
+          <label><input type="checkbox" value="AB" data-filter="cat" /> AB — Ambos</label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="f-price">Preço máximo: <span id="f-price-out">R$ 100</span>/h</label>
+        <input id="f-price" type="range" min="50" max="150" step="5" value="100" />
+      </div>
+
+      <div class="field">
+        <label class="field__label">Avaliação mínima</label>
+        <div class="rating-pills" id="f-rating">
+          <button data-r="0" class="is-active">Todas</button>
+          <button data-r="4">4★+</button>
+          <button data-r="4.5">4.5★+</button>
+        </div>
+      </div>
+
+      <button id="f-clear" class="btn btn--ghost btn--sm" style="width:100%">Limpar filtros</button>
+    </aside>
+
+    <section class="results">
+      <header class="results__header">
+        <div>
+          <h1>Instrutores disponíveis</h1>
+          <p id="results-count">Carregando...</p>
+        </div>
+        <select id="results-sort">
+          <option value="rating">Melhor avaliados</option>
+          <option value="price-asc">Menor preço</option>
+          <option value="price-desc">Maior preço</option>
+          <option value="exp">Mais experientes</option>
+        </select>
+      </header>
+
+      <div class="results__grid" id="results-grid"></div>
+      <div class="results__empty" id="results-empty" hidden>
+        <p>Nenhum instrutor encontrado com esses filtros.</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="../scripts/data.js"></script>
+  <script src="../scripts/busca.js"></script>
+</body>
+</html>

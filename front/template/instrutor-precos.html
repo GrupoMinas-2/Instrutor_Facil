@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Preços — Painel Instrutor</title>
+  <link rel="stylesheet" href="../styles/base.css" />
+  <link rel="stylesheet" href="../styles/instrutor.css" />
+  <link rel="stylesheet" href="../styles/instrutor-precos.css" />
+</head>
+<body>
+  <div class="instructor-layout">
+    <aside class="sidebar">
+      <a href="index.html" class="brand">
+        <span class="brand__mark">i</span>
+        <span>Instrutor Fácil</span>
+      </a>
+      <nav class="sidebar-nav">
+        <a href="instrutor.html"><span>📊</span> Visão geral</a>
+        <a href="instrutor-agenda.html"><span>📅</span> Agenda</a>
+        <a href="instrutor-precos.html" class="is-active"><span>💰</span> Preços</a>
+        <a href="instrutor-disponibilidade.html"><span>⏰</span> Disponibilidade</a>
+        <a href="instrutor-perfil.html"><span>👤</span> Perfil</a>
+        <a href="instrutor-avaliacoes.html"><span>⭐</span> Avaliações</a>
+      </nav>
+      <a href="index.html" class="sidebar-logout">← Voltar ao site</a>
+    </aside>
+
+    <main class="instructor-main">
+      <header class="instructor-header">
+        <h1>Preços e pacotes</h1>
+        <p>Configure quanto você cobra e ofereça pacotes promocionais</p>
+      </header>
+
+      <form id="pricing-form">
+        <section class="card">
+          <h2 class="card-title">Preço base</h2>
+          <div class="field">
+            <label class="field__label" for="basePrice">Valor por hora (R$)</label>
+            <input id="basePrice" type="number" min="30" step="5" />
+            <span class="field__hint">Esse é o valor padrão cobrado por aula de 1h em dias úteis.</span>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2 class="card-title">Pacotes promocionais</h2>
+          <p class="card-desc">Ofereça desconto para alunos que comprarem mais aulas de uma vez.</p>
+          <div id="packages"></div>
+          <div class="preview" id="packages-preview"></div>
+        </section>
+
+        <section class="card">
+          <h2 class="card-title">Sobretaxas</h2>
+          <div class="grid-2">
+            <div class="field">
+              <label class="field__label" for="weekend">Final de semana (%)</label>
+              <input id="weekend" type="number" min="0" max="100" />
+            </div>
+            <div class="field">
+              <label class="field__label" for="night">Noturno após 18h (%)</label>
+              <input id="night" type="number" min="0" max="100" />
+            </div>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2 class="card-title">Política de cancelamento</h2>
+          <div class="field">
+            <textarea id="cancel-policy"></textarea>
+          </div>
+        </section>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn--primary">Salvar alterações</button>
+        </div>
+      </form>
+    </main>
+  </div>
+
+  <script src="../scripts/data.js"></script>
+  <script src="../scripts/instrutor-precos.js"></script>
+</body>
+</html>

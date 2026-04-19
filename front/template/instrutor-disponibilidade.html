@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Disponibilidade — Painel Instrutor</title>
+  <link rel="stylesheet" href="../styles/base.css" />
+  <link rel="stylesheet" href="../styles/instrutor.css" />
+  <link rel="stylesheet" href="../styles/instrutor-disponibilidade.css" />
+</head>
+<body>
+  <div class="instructor-layout">
+    <aside class="sidebar">
+      <a href="index.html" class="brand">
+        <span class="brand__mark">i</span>
+        <span>Instrutor Fácil</span>
+      </a>
+      <nav class="sidebar-nav">
+        <a href="instrutor.html"><span>📊</span> Visão geral</a>
+        <a href="instrutor-agenda.html"><span>📅</span> Agenda</a>
+        <a href="instrutor-precos.html"><span>💰</span> Preços</a>
+        <a href="instrutor-disponibilidade.html" class="is-active"><span>⏰</span> Disponibilidade</a>
+        <a href="instrutor-perfil.html"><span>👤</span> Perfil</a>
+        <a href="instrutor-avaliacoes.html"><span>⭐</span> Avaliações</a>
+      </nav>
+      <a href="index.html" class="sidebar-logout">← Voltar ao site</a>
+    </aside>
+
+    <main class="instructor-main">
+      <header class="instructor-header">
+        <h1>Disponibilidade</h1>
+        <p>Defina os dias e horários em que você aceita aulas</p>
+      </header>
+
+      <form id="avail-form">
+        <section class="card">
+          <h2 class="card-title">Dias da semana</h2>
+          <div class="days" id="days"></div>
+        </section>
+
+        <section class="card">
+          <h2 class="card-title">Horário de trabalho</h2>
+          <div class="grid-2">
+            <div class="field">
+              <label class="field__label" for="hStart">Início</label>
+              <input id="hStart" type="time" />
+            </div>
+            <div class="field">
+              <label class="field__label" for="hEnd">Fim</label>
+              <input id="hEnd" type="time" />
+            </div>
+          </div>
+        </section>
+
+        <section class="card">
+          <header class="lunch-head">
+            <div>
+              <h2 class="card-title">Pausa para almoço</h2>
+              <p class="card-desc">Bloqueie um intervalo no meio do dia.</p>
+            </div>
+            <label class="switch">
+              <input id="lunchEnabled" type="checkbox" />
+              <span class="switch-slider"></span>
+            </label>
+          </header>
+          <div class="grid-2" id="lunch-times">
+            <div class="field">
+              <label class="field__label" for="lStart">Início</label>
+              <input id="lStart" type="time" />
+            </div>
+            <div class="field">
+              <label class="field__label" for="lEnd">Fim</label>
+              <input id="lEnd" type="time" />
+            </div>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2 class="card-title">Regras de agendamento</h2>
+          <div class="grid-2">
+            <div class="field">
+              <label class="field__label" for="notice">Antecedência mínima (h)</label>
+              <input id="notice" type="number" min="0" />
+              <span class="field__hint">Ex: 12h significa que alunos não podem agendar para o mesmo dia.</span>
+            </div>
+            <div class="field">
+              <label class="field__label" for="advance">Antecedência máxima (dias)</label>
+              <input id="advance" type="number" min="1" />
+              <span class="field__hint">Até quantos dias no futuro alunos podem reservar.</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2 class="card-title">Datas bloqueadas</h2>
+          <p class="card-desc">Folgas, feriados ou ausências.</p>
+          <div class="block-add">
+            <input id="blockDate" type="date" />
+            <button type="button" class="btn btn--ghost btn--sm" id="addBlock">Bloquear</button>
+          </div>
+          <div id="blockList" class="block-list"></div>
+        </section>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn--primary">Salvar disponibilidade</button>
+        </div>
+      </form>
+    </main>
+  </div>
+
+  <script src="../scripts/data.js"></script>
+  <script src="../scripts/instrutor-disponibilidade.js"></script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perfil — Painel Instrutor</title>
+  <link rel="stylesheet" href="../styles/base.css" />
+  <link rel="stylesheet" href="../styles/instrutor.css" />
+  <link rel="stylesheet" href="../styles/instrutor-perfil.css" />
+</head>
+<body>
+  <div class="instructor-layout">
+    <aside class="sidebar">
+      <a href="index.html" class="brand">
+        <span class="brand__mark">i</span>
+        <span>Instrutor Fácil</span>  
+      </a>
+      <nav class="sidebar-nav">
+        <a href="instrutor.html"><span>📊</span> Visão geral</a>
+        <a href="instrutor-agenda.html"><span>📅</span> Agenda</a>
+        <a href="instrutor-precos.html"><span>💰</span> Preços</a>
+        <a href="instrutor-disponibilidade.html"><span>⏰</span> Disponibilidade</a>
+        <a href="instrutor-perfil.html" class="is-active"><span>👤</span> Perfil</a>
+        <a href="instrutor-avaliacoes.html"><span>⭐</span> Avaliações</a>
+      </nav>
+      <a href="index.html" class="sidebar-logout">← Voltar ao site</a>
+    </aside>
+
+    <main class="instructor-main">
+      <header class="instructor-header">
+        <h1>Perfil público</h1>
+        <p>Essas informações aparecem para os alunos que buscarem por instrutores</p>
+      </header>
+
+      <form id="profile-form">
+        <section class="card profile-head">
+          <img id="p-photo" src="" alt="" class="profile-photo" />
+          <div>
+            <h2 id="p-name-display"></h2>
+            <p id="p-loc-display" class="muted"></p>
+            <button type="button" class="btn btn--ghost btn--sm">Trocar foto</button>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2 class="card-title">Informações básicas</h2>
+          <div class="grid-2">
+            <div class="field">
+              <label class="field__label" for="p-name">Nome completo</label>
+              <input id="p-name" type="text" />
+            </div>
+            <div class="field">
+              <label class="field__label" for="p-exp">Anos de experiência</label>
+              <input id="p-exp" type="number" min="0" />
+            </div>
+            <div class="field">
+              <label class="field__label" for="p-email">E-mail</label>
+              <input id="p-email" type="email" />
+            </div>
+            <div class="field">
+              <label class="field__label" for="p-phone">Telefone</label>
+              <input id="p-phone" type="text" />
+            </div>
+          </div>
+          <div class="field">
+            <label class="field__label" for="p-bio">Bio</label>
+            <textarea id="p-bio"></textarea>
+            <span class="field__hint" id="bio-count">0/280</span>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2 class="card-title">Veículo</h2>
+          <div class="grid-2">
+            <div class="field">
+              <label class="field__label" for="p-car">Modelo do carro</label>
+              <input id="p-car" type="text" />
+            </div>
+            <div class="field">
+              <label class="field__label" for="p-plate">Placa</label>
+              <input id="p-plate" type="text" />
+            </div>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2 class="card-title">Atendimento</h2>
+          <div class="field">
+            <label class="field__label">Categorias CNH</label>
+            <div class="chip-group" id="cats">
+              <label><input type="checkbox" value="A" /> A — Moto</label>
+              <label><input type="checkbox" value="B" /> B — Carro</label>
+              <label><input type="checkbox" value="AB" /> AB — Ambos</label>
+              <label><input type="checkbox" value="C" /> C — Caminhão</label>
+            </div>
+          </div>
+          <div class="grid-2">
+            <div class="field">
+              <label class="field__label" for="p-loc">Região</label>
+              <input id="p-loc" type="text" />
+            </div>
+            <div class="field">
+              <label class="field__label" for="p-radius">Raio de atendimento (km)</label>
+              <input id="p-radius" type="number" min="1" />
+            </div>
+          </div>
+          <div class="field">
+            <label class="field__label">Especialidades</label>
+            <div class="tags-input">
+              <div class="tags-list" id="tags-list"></div>
+              <input id="tag-input" type="text" placeholder="Digite e pressione Enter" />
+            </div>
+          </div>
+        </section>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn--primary">Salvar perfil</button>
+        </div>
+      </form>
+    </main>
+  </div>
+
+  <script src="../scripts/data.js"></script>
+  <script src="../scripts/instrutor-perfil.js"></script>
+</body>
+</html>

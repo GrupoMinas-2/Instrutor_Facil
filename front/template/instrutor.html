@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel do Instrutor — AutoAula</title>
+  <link rel="stylesheet" href="../styles/base.css" />
+  <link rel="stylesheet" href="../styles/instrutor.css"/>
+
+</head>
+<body>
+  <div class="instructor-layout">
+    <aside class="sidebar">
+      <a href="index.html" class="brand">
+        <span class="brand__mark">i</span>
+        <span>Instrutor Fácil</span>
+      </a>
+      <nav class="sidebar-nav">
+        <a href="instrutor.html" class="is-active"><span>📊</span> Visão geral</a>
+        <a href="instrutor-agenda.html"><span>📅</span> Agenda</a>
+        <a href="instrutor-precos.html"><span>💰</span> Preços</a>
+        <a href="instrutor-disponibilidade.html"><span>⏰</span> Disponibilidade</a>
+        <a href="instrutor-perfil.html"><span>👤</span> Perfil</a>
+        <a href="instrutor-avaliacoes.html"><span>⭐</span> Avaliações</a>
+      </nav>
+      <a href="index.html" class="sidebar-logout">← Voltar ao site</a>
+    </aside>
+
+    <main class="instructor-main">
+      <header class="instructor-header">
+        <div>
+          <h1>Olá, <span id="greet-name">Carlos</span> 👋</h1>
+          <p>Aqui está um resumo da sua semana</p>
+        </div>
+      </header>
+
+      <!-- KPIs -->
+      <section class="kpi-grid">
+        <article class="kpi">
+          <span class="kpi__label">Aulas hoje</span>
+          <strong class="kpi__value" id="kpi-today">0</strong>
+          <span class="kpi__hint">próximas no dia</span>
+        </article>
+        <article class="kpi">
+          <span class="kpi__label">Faturamento mês</span>
+          <strong class="kpi__value" id="kpi-revenue">R$ 0</strong>
+          <span class="kpi__hint">aulas concluídas</span>
+        </article>
+        <article class="kpi">
+          <span class="kpi__label">Avaliação média</span>
+          <strong class="kpi__value" id="kpi-rating">0.0 ★</strong>
+          <span class="kpi__hint" id="kpi-rating-hint">0 avaliações</span>
+        </article>
+        <article class="kpi">
+          <span class="kpi__label">Pendentes</span>
+          <strong class="kpi__value" id="kpi-pending">0</strong>
+          <span class="kpi__hint">aguardando confirmação</span>
+        </article>
+      </section>
+
+      <!-- Próximas aulas -->
+      <section class="card">
+        <header class="section-header">
+          <h2>Próximas aulas</h2>
+          <a href="instrutor-agenda.html" class="btn btn--ghost btn--sm">Ver tudo</a>
+        </header>
+        <div id="upcoming-list"></div>
+      </section>
+
+      <!-- Atalhos -->
+      <section class="shortcuts">
+        <a href="instrutor-disponibilidade.html" class="shortcut">
+          <strong>Atualize sua agenda</strong>
+          <span>Defina dias e horários disponíveis</span>
+        </a>
+        <a href="instrutor-precos.html" class="shortcut">
+          <strong>Configure pacotes</strong>
+          <span>Ofereça descontos e fidelize alunos</span>
+        </a>
+        <a href="instrutor-avaliacoes.html" class="shortcut">
+          <strong>Responda avaliações</strong>
+          <span>Engaje com seus alunos</span>
+        </a>
+      </section>
+    </main>
+  </div>
+
+  <script src="../scripts/data.js"></script>
+  <script src="../scripts/instrutor.js"></script>
+</body>
+</html>

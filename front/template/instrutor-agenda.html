@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agenda — Painel Instrutor</title>
+  <link rel="stylesheet" href="../styles/base.css" />
+  <link rel="stylesheet" href="../styles/instrutor.css" />
+  <link rel="stylesheet" href="../styles/instrutor-agenda.css" />
+</head>
+<body>
+  <div class="instructor-layout">
+    <aside class="sidebar">
+      <a href="index.html" class="brand"><span class="brand__mark">i</span><span>Instrutor Fácil</span></a>
+      <nav class="sidebar-nav">
+        <a href="instrutor.html"><span>📊</span> Visão geral</a>
+        <a href="instrutor-agenda.html" class="is-active"><span>📅</span> Agenda</a>
+        <a href="instrutor-precos.html"><span>💰</span> Preços</a>
+        <a href="instrutor-disponibilidade.html"><span>⏰</span> Disponibilidade</a>
+        <a href="instrutor-perfil.html"><span>👤</span> Perfil</a>
+        <a href="instrutor-avaliacoes.html"><span>⭐</span> Avaliações</a>
+      </nav>
+      <a href="index.html" class="sidebar-logout">← Voltar ao site</a>
+    </aside>
+
+    <main class="instructor-main">
+      <header class="instructor-header">
+        <h1>Agenda</h1>
+        <p>Gerencie suas aulas confirmadas, pendentes e histórico</p>
+      </header>
+
+      <div class="tabs" id="lesson-tabs">
+        <button data-tab="upcoming" class="is-active">Próximas</button>
+        <button data-tab="pending">Pendentes</button>
+        <button data-tab="history">Histórico</button>
+      </div>
+
+      <div id="lesson-list"></div>
+    </main>
+  </div>
+
+  <script src="../scripts/data.js"></script>
+  <script src="../scripts/instrutor-agenda.js"></script>
+</body>
+</html>

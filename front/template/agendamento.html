@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agendar aula — AutoAula</title>
+  <link rel="stylesheet" href="../styles/base.css" />
+  <link rel="stylesheet" href="../styles/agendamento.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="index.html" class="brand">
+        <span class="brand__mark">i</span>
+        <span>Instrutor Fácil</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Início</a></li>
+          <li><a href="busca.html">Instrutores</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <button class="btn btn--primary btn--sm">Entrar</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <a href="busca.html" class="back-link">← Voltar à busca</a>
+
+    <!-- Stepper -->
+    <ol class="stepper" id="stepper">
+      <li class="is-active" data-step="1"><span>1</span> Data e horário</li>
+      <li data-step="2"><span>2</span> Seus dados</li>
+      <li data-step="3"><span>3</span> Pagamento</li>
+    </ol>
+
+    <div class="schedule-layout">
+      <!-- Conteúdo das etapas -->
+      <div>
+        <!-- Etapa 1 -->
+        <section class="step-panel is-active" data-panel="1">
+          <h2>Escolha data e horário</h2>
+          <div class="field">
+            <label class="field__label" for="s-date">Data</label>
+            <input id="s-date" type="date" />
+          </div>
+          <div class="field">
+            <label class="field__label">Horários disponíveis</label>
+            <div class="time-grid" id="time-grid"></div>
+          </div>
+          <div class="field">
+            <label class="field__label" for="s-duration">Duração</label>
+            <select id="s-duration">
+              <option value="1">1 hora</option>
+              <option value="2">2 horas</option>
+              <option value="3">3 horas</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="field__label" for="s-pickup">Local de embarque</label>
+            <input id="s-pickup" type="text" placeholder="Endereço onde o instrutor vai te buscar" />
+          </div>
+          <button class="btn btn--primary" data-next="2">Continuar</button>
+        </section>
+
+        <!-- Etapa 2 -->
+        <section class="step-panel" data-panel="2">
+          <h2>Seus dados</h2>
+          <div class="grid-2">
+            <div class="field">
+              <label class="field__label" for="s-name">Nome completo</label>
+              <input id="s-name" type="text" required />
+              <span class="field__error" data-error-for="s-name"></span>
+            </div>
+            <div class="field">
+              <label class="field__label" for="s-cpf">CPF</label>
+              <input id="s-cpf" type="text" placeholder="000.000.000-00" maxlength="14" />
+              <span class="field__error" data-error-for="s-cpf"></span>
+            </div>
+            <div class="field">
+              <label class="field__label" for="s-email">E-mail</label>
+              <input id="s-email" type="email" required />
+              <span class="field__error" data-error-for="s-email"></span>
+            </div>
+            <div class="field">
+              <label class="field__label" for="s-phone">Telefone</label>
+              <input id="s-phone" type="text" placeholder="(11) 99999-9999" maxlength="15" />
+              <span class="field__error" data-error-for="s-phone"></span>
+            </div>
+          </div>
+          <div class="actions-row">
+            <button class="btn btn--ghost" data-prev="1">Voltar</button>
+            <button class="btn btn--primary" data-next="3">Continuar</button>
+          </div>
+        </section>
+
+        <!-- Etapa 3 -->
+        <section class="step-panel" data-panel="3">
+          <h2>Pagamento</h2>
+          <div class="payment-tabs">
+            <button class="is-active" data-pay="card">Cartão</button>
+            <button data-pay="pix">PIX</button>
+          </div>
+
+          <div class="payment-content" data-pay-content="card">
+            <div class="field">
+              <label class="field__label" for="cc-num">Número do cartão</label>
+              <input id="cc-num" type="text" placeholder="0000 0000 0000 0000" maxlength="19" />
+              <span class="field__error" data-error-for="cc-num"></span>
+            </div>
+            <div class="grid-2">
+              <div class="field">
+                <label class="field__label" for="cc-exp">Validade</label>
+                <input id="cc-exp" type="text" placeholder="MM/AA" maxlength="5" />
+              </div>
+              <div class="field">
+                <label class="field__label" for="cc-cvv">CVV</label>
+                <input id="cc-cvv" type="text" placeholder="000" maxlength="4" />
+              </div>
+            </div>
+            <div class="field">
+              <label class="field__label" for="cc-name">Nome impresso</label>
+              <input id="cc-name" type="text" />
+            </div>
+          </div>
+          <div class="payment-content" data-pay-content="pix" hidden>
+            <div class="pix-box">
+              <div class="pix-qr">QR</div>
+              <p>Após confirmar, geramos um QR Code válido por 30 minutos.</p>
+            </div>
+          </div>
+
+          <div class="actions-row">
+            <button class="btn btn--ghost" data-prev="2">Voltar</button>
+            <button class="btn btn--primary" id="confirm-booking">Confirmar agendamento</button>
+          </div>
+        </section>
+
+        <!-- Sucesso -->
+        <section class="step-panel success-panel" data-panel="success">
+          <div class="success-icon">✓</div>
+          <h2>Aula agendada!</h2>
+          <p>Você receberá um e-mail com os detalhes da aula em instantes.</p>
+          <a href="index.html" class="btn btn--primary">Voltar ao início</a>
+        </section>
+      </div>
+
+      <!-- Resumo -->
+      <aside class="summary" id="summary">
+        <h3>Resumo</h3>
+        <div id="summary-instructor"></div>
+        <div class="summary__row"><span>Data</span><strong id="sum-date">—</strong></div>
+        <div class="summary__row"><span>Horário</span><strong id="sum-time">—</strong></div>
+        <div class="summary__row"><span>Duração</span><strong id="sum-duration">1h</strong></div>
+        <div class="summary__row"><span>Preço/hora</span><strong id="sum-rate">—</strong></div>
+        <div class="summary__total"><span>Total</span><strong id="sum-total">R$ 0</strong></div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../scripts/data.js"></script>
+  <script src="../scripts/agendamento.js"></script>
+</body>
+</html>

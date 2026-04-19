@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Avaliações — Painel Instrutor</title>
+  <link rel="stylesheet" href="../styles/base.css" />
+  <link rel="stylesheet" href="../styles/instrutor.css" />
+  <link rel="stylesheet" href="../styles/instrutor-avaliacoes.css" />
+</head>
+<body>
+  <div class="instructor-layout">
+    <aside class="sidebar">
+      <a href="index.html" class="brand">
+        <span class="brand__mark">i</span>
+        <span>Instrutor Fácil</span>
+      </a>
+      <nav class="sidebar-nav">
+        <a href="instrutor.html"><span>📊</span> Visão geral</a>
+        <a href="instrutor-agenda.html"><span>📅</span> Agenda</a>
+        <a href="instrutor-precos.html"><span>💰</span> Preços</a>
+        <a href="instrutor-disponibilidade.html"><span>⏰</span> Disponibilidade</a>
+        <a href="instrutor-perfil.html"><span>👤</span> Perfil</a>
+        <a href="instrutor-avaliacoes.html" class="is-active"><span>⭐</span> Avaliações</a>
+      </nav>
+      <a href="index.html" class="sidebar-logout">← Voltar ao site</a>
+    </aside>
+
+    <main class="instructor-main">
+      <header class="instructor-header">
+        <h1>Avaliações dos alunos</h1>
+        <p>Veja o que seus alunos estão dizendo e responda publicamente</p>
+      </header>
+
+      <section class="rating-summary card">
+        <div class="rating-summary__score">
+          <strong id="avg-score">0.0</strong>
+          <div id="avg-stars" class="stars"></div>
+          <span id="avg-count" class="muted">0 avaliações</span>
+        </div>
+        <div class="rating-summary__bars" id="rating-bars"></div>
+      </section>
+
+      <div class="filter-row">
+        <div class="tabs" id="rev-tabs">
+          <button data-f="all" class="is-active">Todas</button>
+          <button data-f="unanswered">Sem resposta</button>
+          <button data-f="5">5 estrelas</button>
+          <button data-f="lower">4 ou menos</button>
+        </div>
+      </div>
+
+      <div id="reviews-list"></div>
+    </main>
+  </div>
+
+  <script src="../scripts/data.js"></script>
+  <script src="../scripts/instrutor-avaliacoes.js"></script>
+</body>
+</html>

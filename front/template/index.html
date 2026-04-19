@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AutoAula — Encontre instrutores autônomos de direção</title>
+  <meta name="description" content="Plataforma que conecta alunos de CNH a instrutores autônomos qualificados. Agende aulas práticas com transparência e segurança." />
+  <link rel="stylesheet" href="../styles/base.css" />
+  <link rel="stylesheet" href="../styles/home.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="index.html" class="brand">
+        <span class="brand__mark">i</span>
+        <span>Instrutor Fácil</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" class="is-active">Início</a></li>
+          <li><a href="busca.html">Instrutores</a></li>
+          <li><a href="#como-funciona">Como funciona</a></li>
+          <li><a href="#faq">Ajuda</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <a href="instrutor.html" class="btn btn--ghost btn--sm">Sou instrutor</a>
+        <button class="btn btn--primary btn--sm">Entrar</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero__inner">
+        <div class="hero__text">
+          <span class="eyebrow">Plataforma para alunos de CNH</span>
+          <h1>Aulas de direção com instrutores <em>de verdade</em>, no seu tempo.</h1>
+          <p>
+            Conectamos você diretamente a instrutores autônomos credenciados.
+            Sem fila de autoescola, sem burocracia, com preço transparente.
+          </p>
+          <form class="hero__search" id="hero-search">
+            <div class="hero__search-field">
+              <label for="search-location">Onde você está?</label>
+              <input id="search-location" type="text" placeholder="Bairro, cidade ou CEP" />
+            </div>
+            <div class="hero__search-field">
+              <label for="search-category">Categoria</label>
+              <select id="search-category">
+                <option value="">Todas</option>
+                <option value="A">A — Moto</option>
+                <option value="B">B — Carro</option>
+                <option value="AB">AB — Ambos</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn--primary">Buscar instrutores</button>
+          </form>
+          <div class="hero__stats">
+            <div><strong>+800</strong><span>instrutores ativos</span></div>
+            <div><strong>4.8★</strong><span>avaliação média</span></div>
+            <div><strong>32k</strong><span>aulas realizadas</span></div>
+          </div>
+        </div>
+        <div class="hero__visual">
+          <div class="hero__card">
+            <img src="https://centesp.com.br/img/cursos/cursos_01_home.jpg" alt="Aluna em aula prática de direção" />
+            <div class="hero__card-badge">
+              <span class="hero__card-dot"></span> 127 instrutores online agora
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Como funciona -->
+    <section class="how" id="como-funciona">
+      <div class="how__inner">
+        <h2>Em 3 passos você está dirigindo</h2>
+        <div class="how__steps">
+          <article class="how__step">
+            <span class="how__num">01</span>
+            <h3>Encontre</h3>
+            <p>Filtre instrutores por região, preço, categoria e avaliações reais de alunos.</p>
+          </article>
+          <article class="how__step">
+            <span class="how__num">02</span>
+            <h3>Agende</h3>
+            <p>Veja a agenda em tempo real e escolha o horário que cabe na sua rotina.</p>
+          </article>
+          <article class="how__step">
+            <span class="how__num">03</span>
+            <h3>Dirija</h3>
+            <p>Pague pela plataforma com segurança e avalie a aula ao final.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Instrutores em destaque -->
+    <section class="featured">
+      <div class="featured__inner">
+        <header class="featured__header">
+          <div>
+            <h2>Instrutores em destaque</h2>
+            <p>Selecionados pelas melhores avaliações da semana</p>
+          </div>
+          <a href="busca.html" class="btn btn--ghost btn--sm">Ver todos →</a>
+        </header>
+        <div class="featured__grid" id="featured-grid"></div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+      <div class="faq__inner">
+        <h2>Perguntas frequentes</h2>
+        <details>
+          <summary>Os instrutores são credenciados?</summary>
+          <p>Sim. Todos passam por verificação de CNH, antecedentes e credenciamento como instrutor autônomo conforme a regulamentação vigente.</p>
+        </details>
+        <details>
+          <summary>Como funciona o pagamento?</summary>
+          <p>Você paga pela plataforma (cartão ou PIX) e o valor só é repassado ao instrutor após a confirmação da aula.</p>
+        </details>
+        <details>
+          <summary>Posso cancelar uma aula?</summary>
+          <p>Sim. Cancelamentos com mais de 24h de antecedência têm reembolso integral.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div>
+        <div class="brand">
+          <span class="brand__mark">I</span>
+          <span>Instrutor Fácil</span>
+        </div>
+        <p>Conectando alunos a instrutores autônomos desde 2025.</p>
+      </div>
+      <div>
+        <h4>Plataforma</h4>
+        <a href="busca.html">Instrutores</a>
+        <a href="instrutor.html">Sou instrutor</a>
+        <a href="#faq">Ajuda</a>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <a href="#">Termos de uso</a>
+        <a href="#">Privacidade</a>
+      </div>
+    </div>
+    <div class="site-footer__bottom">© 2025 AutoAula. Todos os direitos reservados.</div>
+  </footer>
+
+  <script src="../scripts/data.js"></script>
+  <script src="../scripts/home.js"></script>
+</body>
+</html>
