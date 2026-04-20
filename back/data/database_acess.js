@@ -1,8 +1,35 @@
 import sqlite3 from 'sqlite3';
 import { open } from 'sqlite';
-import {instructors} from '../../intrutores.js'
+import { json } from 'express';
 
-let db = undefined
+
+export class DbAcess{ 
+
+    async setData_one (query , value) {
+        const db = await open({
+            filename: './base.db',
+            driver: sqlite3.Database
+        })
+        
+        let result= await db.run(query, value);
+        
+        return result
+    };
+
+    setData_all(query, value){
+        return this.db.run(query, value);
+    }
+
+    readData_one(query, value){
+        return this.db.run(query, value);
+    }
+
+    readData_all(query, value){
+        return this.db.run(query, value);
+    }
+};
+
+
 
 async function createTables(){
 
@@ -49,7 +76,7 @@ async function createTables(){
             FOREIGN KEY (instructor_id) REFERENCES instructors(id),
             FOREIGN KEY (specialty_id) REFERENCES specialties(id) 
         );`
-    )
+    );
 
     db.run(
         `CREATE TABLE IF NOT EXISTS instructor_categories (
@@ -59,7 +86,7 @@ async function createTables(){
             FOREIGN KEY (instructor_id) REFERENCES instructors(id),
             FOREIGN KEY (category_id) REFERENCES categories(id) 
         );`
-    )
+    );
 
     //console.log(instructors)
 };
@@ -84,8 +111,23 @@ async function insertInstructors(instructor){
         instructor.bio,
         instructor.availability,
         instructor.carModel]
-    )
-}
+    );
+};
+
+async function insertOtherDatas () {
+    db = await open({
+        filename: './base.db',
+        driver: sqlite3.Database
+    });
+
+    db.run(`INSERT INTO categories(name) VALUES ('B'), ('AB')`);
+
+    db.run(`INSERT INTO specialties(name) VALUES
+            ('Baliza'),
+            ('Direção Defensiva'), ('Reciclagem'), 
+            ('Moto'), ('Estacionamento')
+    `);
+};
 
 /* instructors.forEach(element => {
     let instructorInsert= {
@@ -103,11 +145,6 @@ async function insertInstructors(instructor){
 
     insertInstructors(instructorInsert)
 }); */
-
-
-createTables()
-//insertInstructors()
-
 /* id: '3',
     name: 'Roberto Almeida',
     photo: 'https://images.unsplash.com/photo-1770058428159-50cca6566c19?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYXR1cmUlMjBtYW4lMjBwcm9mZXNzaW9uYWx8ZW58MXx8fHwxNzc1MTgwMTU5fDA&ixlib=rb-4.1.0&q=80&w=1080',
@@ -122,3 +159,8 @@ specialties: ['Primeira Habilitação', 'Direção Noturna', 'Estradas'],
     carModel: 'Volkswagen Jetta 2021',
 categories: ['B', 'AB'],
   }, */
+
+
+//insertInstructors()
+//createTables()
+//insertOtherDatas()

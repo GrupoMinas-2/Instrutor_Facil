@@ -1,4 +1,49 @@
-export const instructors = [
+import {DbAcess} from '../database_acess.js'
+
+export class InstructorsRepository{
+
+  database = new DbAcess()
+
+  async insertIntructor(instructorEntity){
+    const queryInstructor = `INSERT INTO instructors (name, image_profile, rating, total_lessons, experience, location, price_per_hour, bio, availability, car_model) 
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING*`; 
+    const valuesInstructor=  [instructorEntity.name, instructorEntity.profileImage, instructorEntity.rating,
+    instructorEntity.totalLessons, instructorEntity.experience, instructorEntity.location,
+    instructorEntity.pricePerHour, instructorEntity.bio, instructorEntity.availability, 
+    instructorEntity.carModel]; 
+
+    let result = await this.database.setData_one(queryInstructor, valuesInstructor)
+    return result
+      
+    /* const queryInstructorSpecialities = `INSERT INTO instructor_specialties (instructor_id, specialty_id) 
+    VALUES (?,?)`;
+    const valuesInstructorSpecialities= [result.id] */
+
+  };
+
+}
+
+const professor= {
+    name: 'Senhor teste da silva gomes',
+    profileImage: 'https://imagem_de_teste',
+    rating: 5,
+    totalLessons: 30,
+    experience: 10,
+    location: 'São Paulo - Zona Sul',
+    pricePerHour: 20,
+    bio: 'biografiazinha de teste.',
+    availability: ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+    carModel: 'Honda Civic 2022',
+  }
+  
+//specialties: ['Primeira Habilitação', 'Baliza', 'Direção Defensiva'],
+//categories: ['B', 'AB'],
+  
+const repository= new InstructorsRepository()
+console.log(repository.insertIntructor(professor))
+
+
+const instructors = [
   {
     id: '1',
     name: 'Carlos Silva',
