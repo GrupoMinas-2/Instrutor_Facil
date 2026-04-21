@@ -2,45 +2,67 @@ import {DbAcess} from '../database_acess.js'
 
 export class InstructorsRepository{
 
-  database = new DbAcess()
+  database = new DbAcess();
+  specialtiesMocked= [
+    {id: 1, name: 'Primeira Habilitação'},
+    {id: 2, name: 'Baliza'}, 
+    {id: 3, name: 'Direção Defensiva'}, 
+    {id: 4, name: 'Reciclagem'},
+    {id: 5, name: 'Moto'}, 
+    {id: 6, name: 'Estacionamento'}
+  ];
+
+  categoriesMocked= [
+    {id: 1, name: 'A'},
+    {id: 2, name: 'AB'}
+  ]
 
   async insertIntructor(instructorEntity){
     const queryInstructor = `INSERT INTO instructors (name, image_profile, rating, total_lessons, experience, location, price_per_hour, bio, availability, car_model) 
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING*`; 
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`; 
     const valuesInstructor=  [instructorEntity.name, instructorEntity.profileImage, instructorEntity.rating,
     instructorEntity.totalLessons, instructorEntity.experience, instructorEntity.location,
     instructorEntity.pricePerHour, instructorEntity.bio, instructorEntity.availability, 
-    instructorEntity.carModel]; 
+    instructorEntity.carModel];
 
-    let result = await this.database.setData_one(queryInstructor, valuesInstructor)
-    return result
-      
-    /* const queryInstructorSpecialities = `INSERT INTO instructor_specialties (instructor_id, specialty_id) 
-    VALUES (?,?)`;
-    const valuesInstructorSpecialities= [result.id] */
+    const insertInstructor = await this.database.setData_one(queryInstructor, valuesInstructor);
+    
+
+    const instructorSpecialist= this.specialtiesMocked.filter( iten => instructorEntity.specialties.includes(iten.name) );
+    
+    let queryInstructorSpecialities = `INSERT INTO instructor_specialties (instructor_id, specialty_id) VALUES `;
+
+    const valuesInstructorSpecialities= []
+    
+    for(let iten in instructorSpecialist){
+      queryInstructorSpecialities += '(?,?)'
+      valuesInstructorSpecialities.push( insertInstructor.lastID, instructorSpecialist[iten].id )
+    }
+
+    const insertSpecialistAndInstructor = await this.database.setData_one(queryInstructorSpecialities , valuesInstructorSpecialities)
+
 
   };
 
 }
 
 const professor= {
-    name: 'Senhor teste da silva gomes',
-    profileImage: 'https://imagem_de_teste',
-    rating: 5,
-    totalLessons: 30,
-    experience: 10,
-    location: 'São Paulo - Zona Sul',
-    pricePerHour: 20,
-    bio: 'biografiazinha de teste.',
-    availability: ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
-    carModel: 'Honda Civic 2022',
-  }
-  
-//specialties: ['Primeira Habilitação', 'Baliza', 'Direção Defensiva'],
-//categories: ['B', 'AB'],
+  name: 'Senhor teste da silva gomes',
+  profileImage: 'https://imagem_de_teste',
+  rating: 5,
+  totalLessons: 30,
+  experience: 10,
+  location: 'São Paulo - Zona Sul',
+  pricePerHour: 20,
+  bio: 'biografiazinha de teste.',
+  availability: ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+  carModel: 'Honda Civic 2022',
+  specialties: ['Primeira Habilitação', 'Baliza', 'Direção Defensiva'],
+  categories: ['B', 'AB']
+}
   
 const repository= new InstructorsRepository()
-console.log(repository.insertIntructor(professor))
+//repository.insertIntructor(professor).then(retorno => console.log(retorno))
 
 
 const instructors = [
@@ -51,13 +73,13 @@ const instructors = [
     rating: 4.9,
     totalLessons: 487,
     experience: 12,
-    specialties: ['Primeira Habilitação', 'Baliza', 'Direção Defensiva'],
     location: 'São Paulo - Zona Sul',
     pricePerHour: 80,
     bio: 'Instrutor experiente com mais de 12 anos de atuação. Especialista em preparar alunos para o exame prático com foco em segurança e confiança ao volante.',
     availability: ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
     carModel: 'Honda Civic 2022',
     categories: ['B', 'AB'],
+    specialties: ['Primeira Habilitação', 'Baliza', 'Direção Defensiva'],
   },
   {
     id: '2',
@@ -135,3 +157,31 @@ const instructors = [
     categories: ['B'],
   },
 ];
+
+
+
+ const specialtiesMocked= [
+  {id: 1, name: 'Primeira Habilitação'},
+  {id: 2, name: 'Baliza'}, 
+  {id: 3, name: 'Direção Defensiva'}, 
+  {id: 4, name: 'Reciclagem'},
+  {id: 5, name: 'Moto'}, 
+  {id: 6, name: 'Estacionamento'}
+  ];
+  
+  const testInstructorSpecialist= specialtiesMocked.filter( item => instructors[1].specialties.includes(item.name));
+  
+  console.log('legal')
+  
+  //let testquery= `INSERT INTO instructor_specialties (instructor_id, specialty_id) VALUES (?,?),(?,?)`
+  
+  /* for(let cont in testInstructorSpecialist){
+    
+    testquery += '(?,?),'
+  
+  } */
+  
+  //console.log(testquery) 
+
+  const insertSpecialistAndInstructor = await repository.database.setData_one(`INSERT INTO instructor_specialties (instructor_id, specialty_id) VALUES (?,?),(?,?)` , [26 , 2 , 26, 3])
+

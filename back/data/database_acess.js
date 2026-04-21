@@ -7,7 +7,7 @@ export class DbAcess{
 
     async setData_one (query , value) {
         const db = await open({
-            filename: './base.db',
+            filename: 'back/data/base.db',
             driver: sqlite3.Database
         })
         
