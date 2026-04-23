@@ -3,6 +3,7 @@ import {DbAcess} from '../database_acess.js'
 export class InstructorsRepository{
 
   database = new DbAcess();
+  
   specialtiesMocked= [
     {id: 1, name: 'Primeira Habilitação'},
     {id: 2, name: 'Baliza'}, 
@@ -13,7 +14,7 @@ export class InstructorsRepository{
   ];
 
   categoriesMocked= [
-    {id: 1, name: 'A'},
+    {id: 1, name: 'B'},
     {id: 2, name: 'AB'}
   ]
 
@@ -29,22 +30,36 @@ export class InstructorsRepository{
     
 
     const instructorSpecialist= this.specialtiesMocked.filter( iten => instructorEntity.specialties.includes(iten.name) );
+    const instructorCategories= this.categoriesMocked.filter( iten => instructorEntity.categories.includes(iten.name) ) 
+    //const instructorCategories= this.categoriesMocked
     
-    let queryInstructorSpecialities = `INSERT INTO instructor_specialties (instructor_id, specialty_id) VALUES `;
+    const placeholdersSpecialties = instructorSpecialist.map( () => '(?,?)').join(',')
+    const placeholdersCategories = instructorCategories.map(() => '(?,?)').join(',')
 
-    const valuesInstructorSpecialities= []
+    let queryInstructorSpecialities = `INSERT INTO instructor_specialties (instructor_id, specialty_id) VALUES ${placeholdersSpecialties}`;
+    let queryInstructorCategories = `INSERT INTO instructor_categories (instructor_id, category_id) VALUES ${placeholdersCategories}`
+
+
+    const valuesInstructorSpecialties= []
+    const valuesInstructorCategories = []
     
     for(let iten in instructorSpecialist){
-      queryInstructorSpecialities += '(?,?)'
-      valuesInstructorSpecialities.push( insertInstructor.lastID, instructorSpecialist[iten].id )
+      valuesInstructorSpecialties.push( insertInstructor.lastID, instructorSpecialist[iten].id )
+    }
+    for(let iten in instructorCategories){
+      valuesInstructorCategories.push( insertInstructor.lastID, instructorCategories[iten].id )
     }
 
-    const insertSpecialistAndInstructor = await this.database.setData_one(queryInstructorSpecialities , valuesInstructorSpecialities)
+    const insertSpecialtiesAndInstructor = await this.database.setData_one(queryInstructorSpecialities , valuesInstructorSpecialties)
+    const insertCategoriesAndInstructor = await this.database.setData_one(queryInstructorCategories, valuesInstructorCategories)
 
+    return [insertInstructor , insertSpecialtiesAndInstructor, insertCategoriesAndInstructor]
 
   };
 
 }
+
+
 
 const professor= {
   name: 'Senhor teste da silva gomes',
@@ -61,8 +76,9 @@ const professor= {
   categories: ['B', 'AB']
 }
   
+
 const repository= new InstructorsRepository()
-//repository.insertIntructor(professor).then(retorno => console.log(retorno))
+repository.insertIntructor(professor).then(retorno => console.log(retorno))
 
 
 const instructors = [
@@ -158,30 +174,4 @@ const instructors = [
   },
 ];
 
-
-
- const specialtiesMocked= [
-  {id: 1, name: 'Primeira Habilitação'},
-  {id: 2, name: 'Baliza'}, 
-  {id: 3, name: 'Direção Defensiva'}, 
-  {id: 4, name: 'Reciclagem'},
-  {id: 5, name: 'Moto'}, 
-  {id: 6, name: 'Estacionamento'}
-  ];
-  
-  const testInstructorSpecialist= specialtiesMocked.filter( item => instructors[1].specialties.includes(item.name));
-  
-  console.log('legal')
-  
-  //let testquery= `INSERT INTO instructor_specialties (instructor_id, specialty_id) VALUES (?,?),(?,?)`
-  
-  /* for(let cont in testInstructorSpecialist){
-    
-    testquery += '(?,?),'
-  
-  } */
-  
-  //console.log(testquery) 
-
-  const insertSpecialistAndInstructor = await repository.database.setData_one(`INSERT INTO instructor_specialties (instructor_id, specialty_id) VALUES (?,?),(?,?)` , [26 , 2 , 26, 3])
 

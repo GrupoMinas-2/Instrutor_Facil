@@ -21,11 +21,11 @@ export class DbAcess{
     }
 
     readData_one(query, value){
-        return this.db.run(query, value);
+        return this.db.get(query, value);
     }
 
     readData_all(query, value){
-        return this.db.run(query, value);
+        return this.db.get(query, value);
     }
 };
 
