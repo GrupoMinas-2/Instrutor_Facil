@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Minha Agenda — AutoAula</title>
+  <meta name="description" content="Gerencie suas aulas agendadas e concluídas com instrutores de direção." />
+  <link rel="stylesheet" href="../styles/base.css" />
+  <link rel="stylesheet" href="../styles/home.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="index.html" class="brand">
+        <span class="brand__mark">i</span>
+        <span>Instrutor Fácil</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Início</a></li>
+          <li><a href="aluno-agenda.html" class="is-active">Agenda</a></li>
+          <li><a href="busca.html">Instrutores</a></li>
+          <li><a href="index.html#como-funciona">Como funciona</a></li>
+          <li><a href="index.html#faq">Ajuda</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <a href="instrutor.html" class="btn btn--ghost btn--sm">Sou instrutor</a>
+        <button class="btn btn--primary btn--sm">Entrar</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Agenda do Aluno -->
+    <section class="agenda">
+      <div class="agenda__inner">
+        <h2>Minha Agenda</h2>
+        <div class="agenda__tabs">
+          <button class="agenda__tab agenda__tab--active" data-tab="scheduled">Aulas Agendadas</button>
+          <button class="agenda__tab" data-tab="completed">Aulas Concluídas</button>
+        </div>
+        <div class="agenda__content">
+          <div class="agenda__tab-content agenda__tab-content--active" id="scheduled">
+            <div class="agenda__grid" id="scheduled-grid"></div>
+          </div>
+          <div class="agenda__tab-content" id="completed">
+            <div class="agenda__grid" id="completed-grid"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div>
+        <div class="brand">
+          <span class="brand__mark">I</span>
+          <span>Instrutor Fácil</span>
+        </div>
+        <p>Conectando alunos a instrutores autônomos desde 2025.</p>
+      </div>
+      <div>
+        <h4>Plataforma</h4>
+        <a href="busca.html">Instrutores</a>
+        <a href="instrutor.html">Sou instrutor</a>
+        <a href="index.html#faq">Ajuda</a>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <a href="#">Termos de uso</a>
+        <a href="#">Privacidade</a>
+      </div>
+    </div>
+    <div class="site-footer__bottom">© 2025 AutoAula. Todos os direitos reservados.</div>
+  </footer>
+
+  <script src="../scripts/data.js"></script>
+  <script src="../scripts/aluno-agenda.js"></script>
+</body>
+</html>

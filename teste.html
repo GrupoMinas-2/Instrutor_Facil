@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Minha agenda — AutoAula</title>
+  <meta name="description" content="Acompanhe suas aulas de direção agendadas e o histórico de aulas concluídas com seus instrutores AutoAula." />
+  <link rel="stylesheet" href="front/styles/base.css" />
+  <link rel="stylesheet" href="front/styles/home.css" />
+  <link rel="stylesheet" href="front/styles/aluno-agenda.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="front/template/index.html" class="brand">
+        <span class="brand__mark">A</span>
+        <span>AutoAula</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="front/template/index.html">Início</a></li>
+          <li><a href="front/template/busca.html">Instrutores</a></li>
+          <li><a href="front/template/aluno-agenda.html" class="is-active">Minha agenda</a></li>
+          <li><a href="index.html#faq">Ajuda</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <a href="instrutor.html" class="btn btn--ghost btn--sm">Sou instrutor</a>
+        <button class="btn btn--primary btn--sm">Entrar</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="student-agenda">
+      <div class="student-agenda__inner">
+        <header class="student-agenda__header">
+          <div>
+            <span class="eyebrow">Área do aluno</span>
+            <h1>Minha agenda</h1>
+            <p>Acompanhe suas aulas confirmadas e revise o histórico de aulas já concluídas.</p>
+          </div>
+          <a href="busca.html" class="btn btn--primary">+ Agendar nova aula</a>
+        </header>
+
+        <div class="student-agenda__summary" id="agenda-summary"></div>
+
+        <div class="tabs" id="agenda-tabs">
+          <button data-tab="upcoming" class="is-active">
+            Aulas agendadas <span class="tab-count" id="count-upcoming">0</span>
+          </button>
+          <button data-tab="completed">
+            Aulas concluídas <span class="tab-count" id="count-completed">0</span>
+          </button>
+        </div>
+
+        <div id="agenda-list" class="agenda-list"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div>
+        <div class="brand">
+          <span class="brand__mark">A</span>
+          <span>AutoAula</span>
+        </div>
+        <p>Conectando alunos a instrutores autônomos desde 2025.</p>
+      </div>
+      <div>
+        <h4>Plataforma</h4>
+        <a href="front/template/busca.html">Instrutores</a>
+        <a href="front/template/aluno-agenda.html">Minha agenda</a>
+        <a href="front/template/instrutor.html">Sou instrutor</a>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <a href="#">Termos de uso</a>
+        <a href="#">Privacidade</a>
+      </div>
+    </div>
+    <div class="site-footer__bottom">© 2025 AutoAula. Todos os direitos reservados.</div>
+  </footer>
+
+  <script src="front/scripts/data.js"></script>
+  <script src="teste.js"></script>
+</body>
+</html>
