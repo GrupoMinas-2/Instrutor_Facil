@@ -19,14 +19,14 @@ export class InstructorsRepository{
   ]
 
   async insertIntructor(instructorEntity){
-    const queryInstructor = `INSERT INTO instructors (name, image_profile, rating, total_lessons, experience, location, price_per_hour, bio, availability, car_model) 
+    const queryInsertInstructor = `INSERT INTO instructors (name, image_profile, rating, total_lessons, experience, location, price_per_hour, bio, availability, car_model) 
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`; 
     const valuesInstructor=  [instructorEntity.name, instructorEntity.profileImage, instructorEntity.rating,
     instructorEntity.totalLessons, instructorEntity.experience, instructorEntity.location,
     instructorEntity.pricePerHour, instructorEntity.bio, instructorEntity.availability, 
     instructorEntity.carModel];
 
-    const insertInstructor = await this.database.setData_one(queryInstructor, valuesInstructor);
+    const insertInstructor = await this.database.setData_one(queryInsertInstructor, valuesInstructor);
     
 
     const instructorSpecialist= this.specialtiesMocked.filter( iten => instructorEntity.specialties.includes(iten.name) );
@@ -57,6 +57,33 @@ export class InstructorsRepository{
 
   };
 
+
+  async getInstructorByID( idInstructor, specialties = true, categories = true){
+    const querySelectInstructor= `SELECT * FROM instructors WHERE id = ?`
+    const querySelecSpecialties = `SELECT * FROM instructor_specialties WHERE instructor_id = ? `
+    const querySelecCategories = `SELECT  * FROM instructor_categories WHERE instructor_id = ?`
+    const value = idInstructor
+    
+    let selectSpecialtiesInstructor = undefined
+    let selectCategoriesInstructor = undefined
+    let selectInstructor = undefined
+    let response= []
+    
+    selectInstructor= await this.database.readData_all(querySelectInstructor, value)
+    response.push(selectInstructor)
+
+    if (specialties){
+      selectSpecialtiesInstructor = await this.database.readData_all(querySelecSpecialties,value)  
+      response.push(selectSpecialtiesInstructor)
+    }
+    if (categories){
+      selectCategoriesInstructor = await this.database.readData_all(querySelecCategories, value)
+      response.push(selectCategoriesInstructor)
+    }
+    
+    return response
+  }
+
 }
 
 
@@ -78,7 +105,7 @@ const professor= {
   
 
 const repository= new InstructorsRepository()
-repository.insertIntructor(professor).then(retorno => console.log(retorno))
+repository.getInstructorByID(34).then(retorno => console.log(retorno))
 
 
 const instructors = [

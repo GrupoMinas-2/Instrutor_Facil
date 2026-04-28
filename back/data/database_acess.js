@@ -24,8 +24,12 @@ export class DbAcess{
         return this.db.get(query, value);
     }
 
-    readData_all(query, value){
-        return this.db.get(query, value);
+    async readData_all(query, value){
+        const db = await open({
+            filename: 'back/data/base.db',
+            driver: sqlite3.Database
+        })
+        return db.get(query, value);
     }
 };
 
