@@ -16,11 +16,19 @@ export class DbAcess{
         return result
     };
 
-    setData_all(query, value){
+    async setData_all(query, value){
+        const db = await open({
+            filename: 'back/data/base.db',
+            driver: sqlite3.Database
+        })
         return this.db.run(query, value);
     }
 
-    readData_one(query, value){
+    async readData_one(query, value){
+        const db = await open({
+            filename: 'back/data/base.db',
+            driver: sqlite3.Database
+        })
         return this.db.get(query, value);
     }
 

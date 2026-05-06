@@ -104,8 +104,8 @@ const professor= {
 }
   
 
-const repository= new InstructorsRepository()
-repository.getInstructorByID(34).then(retorno => console.log(retorno))
+//const repository= new InstructorsRepository()
+//repository.getInstructorByID(34).then(retorno => console.log(retorno))
 
 
 const instructors = [
