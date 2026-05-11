@@ -57,6 +57,51 @@ export class InstructorsRepository{
     return [insertInstructor , insertSpecialtiesAndInstructor, insertCategoriesAndInstructor]
 
   };
+  
+  async getInstructors(){
+    const queryJoinInstructorRelation = `
+      SELECT
+        i.id,
+        i.name,
+        i.location,
+        i.image_profile,
+        i.rating,
+        i.total_lessons,
+        i.experience,
+        i.price_per_hour,
+        i.bio,
+        i.availability,
+        i.car_model,
+
+        s.id AS specialty_id,
+        s.name AS specialty_name,
+
+        c.id AS category_id,
+        c.name AS category_name
+
+      FROM instructors AS i
+
+      INNER JOIN instructor_specialties AS ispec
+          ON i.id = ispec.instructor_id
+
+      INNER JOIN specialties AS s
+          ON s.id = ispec.specialty_id
+
+      INNER JOIN instructor_categories AS ic
+          ON i.id = ic.instructor_id
+
+      INNER JOIN categories AS c
+          ON c.id = ic.category_id;
+    `
+
+    let selectJoinRelationsInstructors = undefined
+    let response= []
+    
+    selectJoinRelationsInstructors = await this.database.readData_all(queryJoinInstructorRelation)
+    response.push(selectJoinRelationsInstructors)
+    
+    return response
+  }
 
 
   async getInstructorByID( idInstructor, specialties = true, categories = true){

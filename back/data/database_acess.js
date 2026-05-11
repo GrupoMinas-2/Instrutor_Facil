@@ -16,7 +16,7 @@ export class DbAcess{
         return result
     };
 
-    async setData_all(query, value){
+    async setData_all(query, value = null){
         const db = await open({
             filename: 'back/data/base.db',
             driver: sqlite3.Database
@@ -37,7 +37,11 @@ export class DbAcess{
             filename: 'back/data/base.db',
             driver: sqlite3.Database
         })
-        return db.all(query, value);
+        if(value){
+            return db.all(query, value);
+        }else{
+            return db.all(query)
+        }
     }
 };
 
