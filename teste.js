@@ -4,8 +4,7 @@
    ============================================ */
 
 (function () {
-  const { studentLessons, instructors, formatBRL, formatDateBR, showToast } =
-    window.AutoAulaData;
+  const { studentLessons, instructors, formatBRL, formatDateBR, showToast } = window.AutoAulaData;
 
   const list = document.getElementById("agenda-list");
   const tabs = document.getElementById("agenda-tabs");

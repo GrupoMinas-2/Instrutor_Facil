@@ -4,6 +4,7 @@ export class InstructorsRepository{
 
   database = new DbAcess();
   
+  // dados para passar para um ".env!"
   specialtiesMocked= [
     {id: 1, name: 'Primeira Habilitação'},
     {id: 2, name: 'Baliza'}, 
@@ -23,7 +24,7 @@ export class InstructorsRepository{
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`; 
     const valuesInstructor=  [instructorEntity.name, instructorEntity.profileImage, instructorEntity.rating,
     instructorEntity.totalLessons, instructorEntity.experience, instructorEntity.location,
-    instructorEntity.pricePerHour, instructorEntity.bio, instructorEntity.availability, 
+    instructorEntity.pricePerHour, instructorEntity.bio, JSON.stringify(instructorEntity.availability), 
     instructorEntity.carModel];
 
     const insertInstructor = await this.database.setData_one(queryInsertInstructor, valuesInstructor);
@@ -69,7 +70,7 @@ export class InstructorsRepository{
     let selectInstructor = undefined
     let response= []
     
-    selectInstructor= await this.database.readData_all(querySelectInstructor, value)
+    selectInstructor= await this.database.readData_one(querySelectInstructor, value)
     response.push(selectInstructor)
 
     if (specialties){

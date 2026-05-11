@@ -21,7 +21,7 @@ export class DbAcess{
             filename: 'back/data/base.db',
             driver: sqlite3.Database
         })
-        return this.db.run(query, value);
+        return db.run(query, value);
     }
 
     async readData_one(query, value){
@@ -29,7 +29,7 @@ export class DbAcess{
             filename: 'back/data/base.db',
             driver: sqlite3.Database
         })
-        return this.db.get(query, value);
+        return db.get(query, value);
     }
 
     async readData_all(query, value){
@@ -37,7 +37,7 @@ export class DbAcess{
             filename: 'back/data/base.db',
             driver: sqlite3.Database
         })
-        return db.get(query, value);
+        return db.all(query, value);
     }
 };
 
