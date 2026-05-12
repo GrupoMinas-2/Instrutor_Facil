@@ -49,8 +49,8 @@ export class DbAcess{
 
 async function createTables(){
 
-    db =  await open({
-        filename: './data/base.db',
+    const db =  await open({
+        filename: 'back/data/base.db',
         driver: sqlite3.Database 
     }); 
 
@@ -104,6 +104,60 @@ async function createTables(){
         );`
     );
 
+    db.run(
+        `CREATE TABLE IF NOT EXISTS students (
+            id INTEGER PRIMARY KEY,
+            name TEXT NOT NULL,
+            email TEXT NOT NULL, 
+            phone INTEGER,
+            cpf INTEGER,
+            document_id INTEGER, 
+            birthdate TEXT NOT NULL, 
+            location TEXT, -- JSON
+            created_at TEXT
+        )`
+    );
+
+    db.run(
+        `CREATE TABLE IF NOT EXISTS student_categories (
+            student_id INTEGER,
+            category_id INTEGER,
+            PRIMARY KEY (student_id, category_id),
+            FOREIGN KEY (student_id) REFERENCES students(id),
+            FOREIGN KEY (category_id) REFERENCES categories(id) 
+        );`
+    );
+
+    db.run(
+        `CREATE TABLE IF NOT EXISTS student_specialties (
+            student_id INTEGER,
+            specialty_id INTEGER,
+            PRIMARY KEY (student_id, specialty_id),
+            FOREIGN KEY (student_id) REFERENCES student(id),
+            FOREIGN KEY (specialty_id) REFERENCES specialties(id) 
+        );`
+    );
+
+    const body = {
+        "id": 1,
+        "name": 'teste',  
+        "email": 'teste.teste@gmail.com', 
+        "phone": 31971222038, 
+        "cpf": 99999999999,
+        "document_id": 99999999, 
+        "birthdate": '2001-01-01',
+        "location": {
+            "cep": 31050520, 
+            "rua": "arthur de castro cunha",
+            "bairro": "acaiaca",
+            "numero": "325",
+            "Cidade": "Belo horizonte",
+            "estado": "Minas Gerais"
+        },
+        "desired_license_category":["A", "B"], 
+        "learning_goal": ["primeira Habilitação"], 
+        "created_at": '11/05/2026'
+    }
     //console.log(instructors)
 };
 
@@ -178,5 +232,5 @@ categories: ['B', 'AB'],
 
 
 //insertInstructors()
-//createTables()
+createTables()
 //insertOtherDatas()

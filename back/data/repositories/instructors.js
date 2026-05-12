@@ -23,7 +23,7 @@ export class InstructorsRepository{
     const queryInsertInstructor = `INSERT INTO instructors (name, image_profile, rating, total_lessons, experience, location, price_per_hour, bio, availability, car_model) 
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`; 
     const valuesInstructor=  [instructorEntity.name, instructorEntity.profileImage, instructorEntity.rating,
-    instructorEntity.totalLessons, instructorEntity.experience, instructorEntity.location,
+    instructorEntity.totalLessons, instructorEntity.experience, JSON.stringify(instructorEntity.location),
     instructorEntity.pricePerHour, instructorEntity.bio, JSON.stringify(instructorEntity.availability), 
     instructorEntity.carModel];
 
