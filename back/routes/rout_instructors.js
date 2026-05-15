@@ -1,6 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import {InstructorsRepository} from '../data/repositories/instructors.js'
+import {InstructorsRepository} from '../data/repositories/instructorsRepository.js'
 
 const app = express();
 app.use(express.json())
