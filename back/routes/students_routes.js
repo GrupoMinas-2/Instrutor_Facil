@@ -6,16 +6,26 @@ const app = express();
 
 app.use(express.json());
 
+
 app.post('/student', async (req, res)=> {
+    
     const repoStudent = new StudentRepository();
-
     const objectStudent = Object(req.body);
-
     const newStudent = await repoStudent.insertStudent(objectStudent);
 
-    //console.log(objectStudent);
+    console.log(newStudent);
 
-    res.send(newStudent)
+    res.json(newStudent);
 })
 
-app.listen(3334); 
+
+app.get('/students', async (req , res)=> {
+    
+    const repoStudent = new StudentRepository(); 
+    const listStudents = await repoStudent.getStudents(); 
+    
+    res.json(listStudents);
+})
+
+
+app.listen(3333); 

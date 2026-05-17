@@ -168,8 +168,8 @@ async function insertInstructors(instructor){
         driver: sqlite3.Database 
     }); 
 
-    db.run(` 
-        INSERT INTO instructors (name, image_profile, rating, total_lessons, experience, location, price_per_hour, bio, availability, car_model)
+        db.run(` 
+            INSERT INTO instructors (name, image_profile, rating, total_lessons, experience, location, price_per_hour, bio, availability, car_model)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING*
     `, [instructor.name,
         instructor.profileImage, 

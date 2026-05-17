@@ -24,7 +24,7 @@ app.get('/instructors/:id_Instructor', async (req , res) => {
 })
 
 
-app.post('/instructors', async (req , res)=>{
+app.post('/instructor', async (req , res)=>{
 
     const objectInstructor = Object(req.body)
     const repoInstructor = new InstructorsRepository()

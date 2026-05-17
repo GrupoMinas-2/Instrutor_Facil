@@ -49,6 +49,7 @@ export class InstructorsRepository{
     }
     for(let iten in instructorCategories){
       valuesInstructorCategories.push( insertInstructor.lastID, instructorCategories[iten].id )
+      
     }
 
     const insertSpecialtiesAndInstructor = await this.database.setData_one(queryInstructorSpecialities , valuesInstructorSpecialties)
@@ -150,7 +151,11 @@ const professor= {
 }
   
 
+// Código de teste: executa inserção quando o arquivo for executado diretamente.
+// Remova ou mantenha comentado em produção. Agora protegido para execução direta.
+//if (process && process.argv && process.argv[1] && process.argv[1].endsWith('instructorsRepository.js')) { }
 //const repository= new InstructorsRepository()
+//repository.insertIntructor(professor).then(retorno => console.log(retorno))
 //repository.getInstructorByID(34).then(retorno => console.log(retorno))
 
 

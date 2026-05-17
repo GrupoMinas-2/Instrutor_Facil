@@ -1,0 +1,53 @@
+POST http://localhost:3333/instructors 
+Content-Type: application/json
+
+{
+    "name": "Senhor teste da silva gomes",
+    "profileImage": "https://imagem_de_teste",
+    "rating": 5,
+    "totalLessons": 30,
+    "experience": 10,
+    "location": "São Paulo - Zona Sul",
+    "pricePerHour": 20,
+    "bio": "biografiazinha de teste.",
+    "availability": ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"],
+    "carModel": "Honda Civic 2022",
+    "specialties": ["Primeira Habilitação", "Baliza", "Direção Defensiva"],
+    "categories": ["B", "AB"]
+}
+
+### 
+GET http://localhost:3333/instructors 
+
+### 
+GET http://localhost:3333/instructors/3
+
+
+
+//STUDENTS
+### --------------------------------------------
+POST http://localhost:3333/Student
+Content-Type: application/json 
+
+{
+    "name": "teste",  
+    "email": "teste.teste@gmail.com", 
+    "phone": 31971222038, 
+    "cpf": 99999999999,
+    "document_id": 99999999, 
+    "birthdate": "2001-01-01",
+    "location": {
+        "cep": 31050520, 
+        "rua": "arthur de castro cunha",
+        "bairro": "acaiaca",
+        "numero": "325",
+        "Cidade": "Belo horizonte",
+        "estado": "Minas Gerais"
+    },
+
+    "desired_license_category": ["A", "B"], 
+    "learning_goal": ["Primeira Habilitação"]
+}
+
+###
+GET http://localhost:3333/students

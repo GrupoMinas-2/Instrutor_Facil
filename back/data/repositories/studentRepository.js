@@ -1,5 +1,5 @@
 import { DbAcess } from "../database_acess.js";
-import { InstructorsRepository } from "./instructorsRepository.js";
+//import { InstructorsRepository } from "./instructorsRepository.js";
 
 export class StudentRepository {
     database = new DbAcess();
@@ -15,7 +15,8 @@ export class StudentRepository {
 
     categoriesMocked= [
         {id: 1, name: 'B'},
-        {id: 2, name: 'AB'}
+        {id: 2, name: 'AB'},
+        {id: 3, name: 'A'}
     ]
 
     async insertStudent(student){
@@ -26,44 +27,112 @@ export class StudentRepository {
 
         const valueStudent = [ student.name, student.email, student.phone, student.cpf, student.document_id, student.birthdate, JSON.stringify(student.location), created_at];
 
-        const  insertStudent= await this.database.setData_one(queryInsertStudent , valueStudent);
+        const  insertStudent= await this.database.setData_one(queryInsertStudent , valueStudent); 
+
 
         const studentDesiredCategory = this.categoriesMocked.filter( iten => student.desired_license_category.includes(iten.name));
         const studentLearning = this.learningMocked.filter(iten => student.learning_goal.includes(iten.name));
 
+
         const categoriesPlaceHolder = studentDesiredCategory.map(() => "(?,?)").join(',');
         const learningPlaceHolder = studentLearning.map(() => "(?,?)").join(',');
 
-        let queryStudentCategories = `INSERT INTO student_specialties (student_id, specialty_id) VALUES ${learningPlaceHolder}`;
-        let queryStudentLearning = `INSERT INTO student_specialties (student_id, categories_id) VALUES ${studentDesiredCategory}`; 
+        let queryStudentLearning = `INSERT INTO student_specialties (student_id, specialty_id) VALUES ${learningPlaceHolder}`;
+        let queryStudentCategories = `INSERT INTO student_categories (student_id, category_id) VALUES ${categoriesPlaceHolder}`;
+        
+        const valuesStudentLearning = [] 
+        const valuesStudentCategories = [] 
+        
 
-        const valuesStudentLearning= [];
-        const valuesStudentCategories= [];
-
-        for (let item in valuesStudentLearning){
-            valuesStudentLearning.push(insertStudent.lastID, studentLearning[item].id);
+        for(let item of studentLearning){
+            valuesStudentLearning.push(insertStudent.lastID, item.id);
         }
-        for (let item in valuesStudentCategories){
-            valuesStudentCategories.push(insertStudent.lastID, studentDesiredCategory[item].id);
+        for(let item of studentDesiredCategory){
+            valuesStudentCategories.push(insertStudent.lastID, item.id);
         }
 
+        
         const insertSpecialtiesAndStudent = await this.database.setData_one(queryStudentLearning, valuesStudentLearning);
+
         const insertCategoriesAndStudent = await this.database.setData_one(queryStudentCategories, valuesStudentCategories); 
         
         
-        //return [insertStudent, insertCategoriesAndStudent, insertSpecialtiesAndStudent]
-        return insertStudent
+        return [insertStudent, insertCategoriesAndStudent, insertSpecialtiesAndStudent]
+        //return [insertStudent, insertCategoriesAndStudent]
+        //return [insertStudent, insertSpecialtiesAndStudent]
+        //return insertStudent
         
     }
     
     async getStudents(){
+        const queryJoinStudentRelation = ` 
+            SELECT
+            students.id AS student_id,
+            students.name AS student_name,
+            students.email,
+            students.phone,
+            students.cpf,
+            students.document_id,
+            students.birthdate,
+            students.location,
+            students.created_at,
+
+            specialties.id AS specialty_id,
+            specialties.name AS specialty_name, 
+
+            categories.id AS category_id,
+            categories.name AS category_name
+
+            FROM students 
+
+            INNER JOIN student_specialties
+                ON students.id = student_specialties.student_id
+            
+            INNER JOIN specialties
+                ON specialties.id = student_specialties.specialty_id
+
+            INNER JOIN student_categories
+                ON students.id = student_categories.student_id
+
+            INNER JOIN categories 
+                ON categories.id = student_categories.category_id
+        ` 
+
+        const baseStudentsRelation = await this.database.readData_all(queryJoinStudentRelation)
+
+        const listDataStudents = []
+
+        for( let iten of baseStudentsRelation){
+
+            if(!listDataStudents[iten.student_id]){
+                console.log(`passando por aqui`)
+                listDataStudents.push({
+                    id: iten.student_id,
+                    name: iten.student_name,
+                    emai: iten.email,
+                    phone: iten.phone,
+                    cpf: iten.cpf,
+                    document_id: iten.document_id,
+                    birthdate: iten.birthdate,
+                    location: JSON.parse(iten.location),
+                    created_at: iten.created_at,
+                    specialties:[],
+                    categories:[]
+                })
+            }
+        }
         
+
+        return baseStudentsRelation 
     }
     
     async getStudentsById(){
         
     }
 }
+
+let teste = `categories.id,
+categories.name` 
 
 
 const body = {
@@ -83,9 +152,8 @@ const body = {
     },
 
     desired_license_category: ["A", "B"], 
-    learning_goal: ["primeira Habilitação"], 
+    learning_goal: ["Primeira Habilitação"], 
     
 }
-const repo = new StudentRepository()
-
-//repo.insertStudent(body)
+//const repo = new StudentRepository()
+//repo.insertStudent(body).then(response => console.log(response))
