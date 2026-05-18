@@ -27,5 +27,12 @@ app.get('/students', async (req , res)=> {
     res.json(listStudents);
 })
 
+app.get('/student/:idStudent', async (req, res) => {
+    const repoStudent = new StudentRepository()
+    const idStudent = Number(req.params.idStudent)
+    const searchStudentById = await repoStudent.getStudentsById(idStudent)
+
+    res.json(searchStudentById)
+})
 
 app.listen(3333); 

@@ -20,7 +20,6 @@ export class StudentRepository {
     ]
 
     async insertStudent(student){
-        //const created_at = 23;
         const created_at = new Date().toISOString();
 
         const queryInsertStudent = `INSERT INTO students (name, email, phone, cpf, document_id, birthdate, location, created_at ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`; 
@@ -53,14 +52,10 @@ export class StudentRepository {
 
         
         const insertSpecialtiesAndStudent = await this.database.setData_one(queryStudentLearning, valuesStudentLearning);
-
         const insertCategoriesAndStudent = await this.database.setData_one(queryStudentCategories, valuesStudentCategories); 
         
         
         return [insertStudent, insertCategoriesAndStudent, insertSpecialtiesAndStudent]
-        //return [insertStudent, insertCategoriesAndStudent]
-        //return [insertStudent, insertSpecialtiesAndStudent]
-        //return insertStudent
         
     }
     
@@ -102,11 +97,13 @@ export class StudentRepository {
 
         const listDataStudents = []
 
-        for( let iten of baseStudentsRelation){
+        for(let iten of baseStudentsRelation){
 
-            if(!listDataStudents[iten.student_id]){
-                console.log(`passando por aqui`)
-                listDataStudents.push({
+            let student = listDataStudents.find( item => item.id === iten.student_id )
+            
+            if(!student){
+                
+                student = {
                     id: iten.student_id,
                     name: iten.student_name,
                     emai: iten.email,
@@ -115,24 +112,79 @@ export class StudentRepository {
                     document_id: iten.document_id,
                     birthdate: iten.birthdate,
                     location: JSON.parse(iten.location),
-                    created_at: iten.created_at,
+                    created_at: iten.created_at, 
                     specialties:[],
                     categories:[]
+                }
+            
+                listDataStudents.push(student)
+            }
+
+            if(!student.specialties.find( specialty => specialty.id === iten.specialty_id)){
+
+                student.specialties.push({
+                    id: iten.specialty_id,
+                    name: iten.specialty_name
                 })
             }
+
+            if(!student.categories.find( category => category.id === iten.category_id)){
+                student.categories.push({
+                    id: iten.category_id,
+		            name: iten.category_name
+                })
+            }
+            
+
         }
         
-
+        //return listDataStudents 
         return baseStudentsRelation 
     }
     
-    async getStudentsById(){
-        
+    async getStudentsById(idStudent){
+        const queryJoinStudentRelationById =  ` 
+            SELECT
+            students.id AS student_id,
+            students.name AS student_name,
+            students.email,
+            students.phone,
+            students.cpf,
+            students.document_id,
+            students.birthdate,
+            students.location,
+            students.created_at,
+
+            specialties.id AS specialty_id,
+            specialties.name AS specialty_name, 
+
+            categories.id AS category_id,
+            categories.name AS category_name
+
+            FROM students 
+
+            INNER JOIN student_specialties
+                ON students.id = student_specialties.student_id
+            
+            INNER JOIN specialties
+                ON specialties.id = student_specialties.specialty_id
+
+            INNER JOIN student_categories
+                ON students.id = student_categories.student_id
+
+            INNER JOIN categories 
+                ON categories.id = student_categories.category_id
+            
+            WHERE students.id = ?
+        ` 
+        const valueIdStudent = idStudent
+
+        const dataStudent = await this.database.readData_one(queryJoinStudentRelationById , valueIdStudent)
+
+        return dataStudent
+
     }
 }
-
-let teste = `categories.id,
-categories.name` 
 
 
 const body = {
@@ -155,5 +207,190 @@ const body = {
     learning_goal: ["Primeira Habilitação"], 
     
 }
+
 //const repo = new StudentRepository()
 //repo.insertStudent(body).then(response => console.log(response))
+/* exemplo de resposta do banco
+[
+	{
+		"student_id": 92,
+		"student_name": "teste",
+		"email": "teste.teste@gmail.com",
+		"phone": 31971222038,
+		"cpf": 99999999999,
+		"document_id": 99999999,
+		"birthdate": "2001-01-01",
+		"location": "{\"cep\":31050520,\"rua\":\"arthur de castro cunha\",\"bairro\":\"acaiaca\",\"numero\":\"325\",\"Cidade\":\"Belo horizonte\",\"estado\":\"Minas Gerais\"}",
+		"created_at": "2026-05-16T21:46:12.227Z",
+		"specialty_id": 1,
+		"specialty_name": "Primeira Habilitação",
+		"category_id": 1,
+		"category_name": "B"
+	},
+	{
+		"student_id": 92,
+		"student_name": "teste",
+		"email": "teste.teste@gmail.com",
+		"phone": 31971222038,
+		"cpf": 99999999999,
+		"document_id": 99999999,
+		"birthdate": "2001-01-01",
+		"location": "{\"cep\":31050520,\"rua\":\"arthur de castro cunha\",\"bairro\":\"acaiaca\",\"numero\":\"325\",\"Cidade\":\"Belo horizonte\",\"estado\":\"Minas Gerais\"}",
+		"created_at": "2026-05-16T21:46:12.227Z",
+		"specialty_id": 1,
+		"specialty_name": "Primeira Habilitação",
+		"category_id": 3,
+		"category_name": "A"
+	},
+	{
+		"student_id": 93,
+		"student_name": "teste",
+		"email": "teste.teste@gmail.com",
+		"phone": 31971222038,
+		"cpf": 99999999999,
+		"document_id": 99999999,
+		"birthdate": "2001-01-01",
+		"location": "{\"cep\":31050520,\"rua\":\"arthur de castro cunha\",\"bairro\":\"acaiaca\",\"numero\":\"325\",\"Cidade\":\"Belo horizonte\",\"estado\":\"Minas Gerais\"}",
+		"created_at": "2026-05-16T21:47:15.526Z",
+		"specialty_id": 1,
+		"specialty_name": "Primeira Habilitação",
+		"category_id": 1,
+		"category_name": "B"
+	},
+	{
+		"student_id": 93,
+		"student_name": "teste",
+		"email": "teste.teste@gmail.com",
+		"phone": 31971222038,
+		"cpf": 99999999999,
+		"document_id": 99999999,
+		"birthdate": "2001-01-01",
+		"location": "{\"cep\":31050520,\"rua\":\"arthur de castro cunha\",\"bairro\":\"acaiaca\",\"numero\":\"325\",\"Cidade\":\"Belo horizonte\",\"estado\":\"Minas Gerais\"}",
+		"created_at": "2026-05-16T21:47:15.526Z",
+		"specialty_id": 1,
+		"specialty_name": "Primeira Habilitação",
+		"category_id": 3,
+		"category_name": "A"
+	},
+	{
+		"student_id": 94,
+		"student_name": "teste",
+		"email": "teste.teste@gmail.com",
+		"phone": 31971222038,
+		"cpf": 99999999999,
+		"document_id": 99999999,
+		"birthdate": "2001-01-01",
+		"location": "{\"cep\":31050520,\"rua\":\"arthur de castro cunha\",\"bairro\":\"acaiaca\",\"numero\":\"325\",\"Cidade\":\"Belo horizonte\",\"estado\":\"Minas Gerais\"}",
+		"created_at": "2026-05-17T04:29:50.302Z",
+		"specialty_id": 1,
+		"specialty_name": "Primeira Habilitação",
+		"category_id": 1,
+		"category_name": "B"
+	},
+	{
+		"student_id": 94,
+		"student_name": "teste",
+		"email": "teste.teste@gmail.com",
+		"phone": 31971222038,
+		"cpf": 99999999999,
+		"document_id": 99999999,
+		"birthdate": "2001-01-01",
+		"location": "{\"cep\":31050520,\"rua\":\"arthur de castro cunha\",\"bairro\":\"acaiaca\",\"numero\":\"325\",\"Cidade\":\"Belo horizonte\",\"estado\":\"Minas Gerais\"}",
+		"created_at": "2026-05-17T04:29:50.302Z",
+		"specialty_id": 1,
+		"specialty_name": "Primeira Habilitação",
+		"category_id": 3,
+		"category_name": "A"
+	},
+	{
+		"student_id": 95,
+		"student_name": "teste",
+		"email": "teste.teste@gmail.com",
+		"phone": 31971222038,
+		"cpf": 99999999999,
+		"document_id": 99999999,
+		"birthdate": "2001-01-01",
+		"location": "{\"cep\":31050520,\"rua\":\"arthur de castro cunha\",\"bairro\":\"acaiaca\",\"numero\":\"325\",\"Cidade\":\"Belo horizonte\",\"estado\":\"Minas Gerais\"}",
+		"created_at": "2026-05-17T04:41:21.886Z",
+		"specialty_id": 1,
+		"specialty_name": "Primeira Habilitação",
+		"category_id": 1,
+		"category_name": "B"
+	},
+	{
+		"student_id": 95,
+		"student_name": "teste",
+		"email": "teste.teste@gmail.com",
+		"phone": 31971222038,
+		"cpf": 99999999999,
+		"document_id": 99999999,
+		"birthdate": "2001-01-01",
+		"location": "{\"cep\":31050520,\"rua\":\"arthur de castro cunha\",\"bairro\":\"acaiaca\",\"numero\":\"325\",\"Cidade\":\"Belo horizonte\",\"estado\":\"Minas Gerais\"}",
+		"created_at": "2026-05-17T04:41:21.886Z",
+		"specialty_id": 1,
+		"specialty_name": "Primeira Habilitação",
+		"category_id": 3,
+		"category_name": "A"
+	},
+	{
+		"student_id": 101,
+		"student_name": "teste",
+		"email": "teste.teste@gmail.com",
+		"phone": 31971222038,
+		"cpf": 99999999999,
+		"document_id": 99999999,
+		"birthdate": "2001-01-01",
+		"location": "{\"cep\":31050520,\"rua\":\"arthur de castro cunha\",\"bairro\":\"acaiaca\",\"numero\":\"325\",\"Cidade\":\"Belo horizonte\",\"estado\":\"Minas Gerais\"}",
+		"created_at": "2026-05-17T05:20:31.316Z",
+		"specialty_id": 1,
+		"specialty_name": "Primeira Habilitação",
+		"category_id": 1,
+		"category_name": "B"
+	},
+	{
+		"student_id": 101,
+		"student_name": "teste",
+		"email": "teste.teste@gmail.com",
+		"phone": 31971222038,
+		"cpf": 99999999999,
+		"document_id": 99999999,
+		"birthdate": "2001-01-01",
+		"location": "{\"cep\":31050520,\"rua\":\"arthur de castro cunha\",\"bairro\":\"acaiaca\",\"numero\":\"325\",\"Cidade\":\"Belo horizonte\",\"estado\":\"Minas Gerais\"}",
+		"created_at": "2026-05-17T05:20:31.316Z",
+		"specialty_id": 1,
+		"specialty_name": "Primeira Habilitação",
+		"category_id": 3,
+		"category_name": "A"
+	},
+	{
+		"student_id": 103,
+		"student_name": "teste",
+		"email": "teste.teste@gmail.com",
+		"phone": 31971222038,
+		"cpf": 99999999999,
+		"document_id": 99999999,
+		"birthdate": "2001-01-01",
+		"location": "{\"cep\":31050520,\"rua\":\"arthur de castro cunha\",\"bairro\":\"acaiaca\",\"numero\":\"325\",\"Cidade\":\"Belo horizonte\",\"estado\":\"Minas Gerais\"}",
+		"created_at": "2026-05-18T01:11:36.842Z",
+		"specialty_id": 1,
+		"specialty_name": "Primeira Habilitação",
+		"category_id": 1,
+		"category_name": "B"
+	},
+	{
+		"student_id": 103,
+		"student_name": "teste",
+		"email": "teste.teste@gmail.com",
+		"phone": 31971222038,
+		"cpf": 99999999999,
+		"document_id": 99999999,
+		"birthdate": "2001-01-01",
+		"location": "{\"cep\":31050520,\"rua\":\"arthur de castro cunha\",\"bairro\":\"acaiaca\",\"numero\":\"325\",\"Cidade\":\"Belo horizonte\",\"estado\":\"Minas Gerais\"}",
+		"created_at": "2026-05-18T01:11:36.842Z",
+		"specialty_id": 1,
+		"specialty_name": "Primeira Habilitação",
+		"category_id": 3,
+		"category_name": "A"
+	}
+]
+*/
