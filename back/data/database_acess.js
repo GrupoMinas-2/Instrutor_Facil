@@ -202,6 +202,17 @@ async function insertOtherDatas () {
     */
 };
 
+async function deltetValues(){
+    const db = await open({
+        filename: 'back/data/base.db',
+        driver: sqlite3.Database
+    });
+
+    //db.run(`DELETE FROM instructors;`);
+    //db.run(`DELETE FROM instructor_categories`);
+    //db.run(`DELETE FROM instructor_specialties`)
+
+}
 /* instructors.forEach(element => {
     let instructorInsert= {
         name: element.name,
@@ -237,3 +248,4 @@ categories: ['B', 'AB'],
 //createTables()
 //insertInstructors()
 //insertOtherDatas()
+//deltetValues()

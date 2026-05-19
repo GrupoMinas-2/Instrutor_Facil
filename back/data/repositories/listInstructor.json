@@ -1,0 +1,323 @@
+[
+    {
+        "name": "Eduardo Gabriel",
+        "profileImage": "https://i.pravatar.cc/300?img=1",
+        "rating": 4.9,
+        "totalLessons": 120,
+        "experience": 4,
+        "location": {
+            "cep":30575275,
+            "rua": "Rua Pedro Natalício de Morais",
+            "bairro": "Buritis",
+            "numero": "345",
+            "Cidade": "Belo Horizonte",
+            "estado": "Minas Gerais"
+        },
+        "pricePerHour": 30,
+        "bio": "Adoro ver alunos ganhando confiança no volante.",
+        "availability": [
+            "Segunda",
+            "Terça",
+            "Quinta",
+            "Sábado"
+        ],
+        "carModel": "Corola 2005",
+        "specialties": [
+            "Primeira Habilitação",
+            "Baliza",
+            "Direção Defensiva"
+        ],
+        "categories": [
+            "B",
+            "AB"
+        ]
+    },
+    {
+        "name": "Mariana Silva",
+        "profileImage": "https://i.pravatar.cc/300?img=2",
+        "rating": 4.7,
+        "totalLessons": 230,
+        "experience": 8,
+        "location": {
+            "cep": 99999999,
+            "rua": "Rua das Flores",
+            "bairro": "Funcionários",
+            "numero": "142",
+            "Cidade": "Belo Horizonte",
+            "estado": "Minas Gerais"
+        },
+        "pricePerHour": 45,
+        "bio": "Metódica e paciente, preparo para primeira habilitação e reciclagem.",
+        "availability": [
+            "Segunda",
+            "Quarta",
+            "Quinta",
+            "Sábado"
+        ],
+        "carModel": "Chevrolet Onix 2020",
+        "specialties": [
+            "Primeira Habilitação",
+            "Reciclagem",
+            "Estacionamento"
+        ],
+        "categories": [
+            "B"
+        ]
+    },
+    {
+        "name": "Roberto Almeida",
+        "profileImage": "https://i.pravatar.cc/300?img=3",
+        "rating": 4.8,
+        "totalLessons": 891,
+        "experience": 20,
+        "location": {
+            "cep": 99999999,
+            "rua": "Avenida Paulista",
+            "bairro": "Bela Vista",
+            "numero": "1000",
+            "Cidade": "São Paulo",
+            "estado": "São Paulo"
+        },
+        "pricePerHour": 90,
+        "bio": "Veterano no ensino, foco em preparação para situações reais de trânsito.",
+        "availability": [
+            "Segunda",
+            "Terça",
+            "Quarta",
+            "Quinta",
+            "Sexta"
+        ],
+        "carModel": "Volkswagen Jetta 2021",
+        "specialties": [
+            "Primeira Habilitação",
+            "Direção Defensiva",
+            "Baliza"
+        ],
+        "categories": [
+            "B",
+            "AB"
+        ]
+    },
+    {
+        "name": "Camila Rodrigues",
+        "profileImage": "https://i.pravatar.cc/300?img=4",
+        "rating": 4.6,
+        "totalLessons": 150,
+        "experience": 6,
+        "location": {
+            "cep": 99999999,
+            "rua": "Rua do Rosário",
+            "bairro": "Savassi",
+            "numero": "210",
+            "Cidade": "Belo Horizonte",
+            "estado": "Minas Gerais"
+        },
+        "pricePerHour": 50,
+        "bio": "Especialista em baliza e técnicas de estacionamento urbanas.",
+        "availability": [
+            "Terça",
+            "Quarta",
+            "Quinta",
+            "Sábado"
+        ],
+        "carModel": "Honda Fit 2019",
+        "specialties": [
+            "Baliza",
+            "Estacionamento",
+            "Direção Defensiva"
+        ],
+        "categories": [
+            "B"
+        ]
+    },
+    {
+        "name": "Lucas Pereira",
+        "profileImage": "https://i.pravatar.cc/300?img=5",
+        "rating": 4.5,
+        "totalLessons": 300,
+        "experience": 10,
+        "location": {
+            "cep": 99999999,
+            "rua": "Rua do Comércio",
+            "bairro": "Centro",
+            "numero": "58",
+            "Cidade": "Belo Horizonte",
+            "estado": "Minas Gerais"
+        },
+        "pricePerHour": 35,
+        "bio": "Foco em aulas práticas e preparação para exame prático.",
+        "availability": [
+            "Segunda",
+            "Terça",
+            "Quinta",
+            "Sexta"
+        ],
+        "carModel": "Ford Ka 2020",
+        "specialties": [
+            "Primeira Habilitação",
+            "Reciclagem"
+        ],
+        "categories": [
+            "B",
+            "AB"
+        ]
+    },
+    {
+        "name": "Ana Beatriz",
+        "profileImage": "https://i.pravatar.cc/300?img=6",
+        "rating": 4.4,
+        "totalLessons": 95,
+        "experience": 3,
+        "location": {
+            "cep": 99999999,
+            "rua": "Rua das Acácias",
+            "bairro": "Castelo",
+            "numero": "77",
+            "Cidade": "Belo Horizonte",
+            "estado": "Minas Gerais"
+        },
+        "pricePerHour": 28,
+        "bio": "Aulas calmas e seguras, ideal para quem tem ansiedade ao dirigir.",
+        "availability": [
+            "Segunda",
+            "Quarta",
+            "Sexta",
+            "Sábado"
+        ],
+        "carModel": "Fiat Argo 2021",
+        "specialties": [
+            "Direção Defensiva",
+            "Primeira Habilitação"
+        ],
+        "categories": [
+            "B"
+        ]
+    },
+    {
+        "name": "Thiago Souza",
+        "profileImage": "https://i.pravatar.cc/300?img=7",
+        "rating": 4.3,
+        "totalLessons": 410,
+        "experience": 12,
+        "location": {
+            "cep": 99999999,
+            "rua": "Avenida do Contorno",
+            "bairro": "Barro Preto",
+            "numero": "901",
+            "Cidade": "Belo Horizonte",
+            "estado": "Minas Gerais"
+        },
+        "pricePerHour": 60,
+        "bio": "Experiência com categorias A e B, aulas para motos e carros.",
+        "availability": [
+            "Terça",
+            "Quinta",
+            "Sábado"
+        ],
+        "carModel": "Honda CG 160 (uso para A)",
+        "specialties": [
+            "Moto",
+            "Direção Defensiva"
+        ],
+        "categories": [
+            "A",
+            "B"
+        ]
+    },
+    {
+        "name": "Fernanda Costa",
+        "profileImage": "https://i.pravatar.cc/300?img=8",
+        "rating": 4.9,
+        "totalLessons": 520,
+        "experience": 15,
+        "location": {
+            "cep": 99999999,
+            "rua": "Rua Sete de Setembro",
+            "bairro": "Centro",
+            "numero": "400",
+            "Cidade": "Belo Horizonte",
+            "estado": "Minas Gerais"
+        },
+        "pricePerHour": 80,
+        "bio": "Treinamento avançado para exames e direção noturna.",
+        "availability": [
+            "Segunda",
+            "Terça",
+            "Quarta",
+            "Quinta"
+        ],
+        "carModel": "Toyota Corolla 2022",
+        "specialties": [
+            "Primeira Habilitação",
+            "Reciclagem",
+            "Baliza"
+        ],
+        "categories": [
+            "B",
+            "AB"
+        ]
+    },
+    {
+        "name": "Eduardo Martins",
+        "profileImage": "https://i.pravatar.cc/300?img=9",
+        "rating": 4.2,
+        "totalLessons": 60,
+        "experience": 2,
+        "location": {
+            "cep": 99999999,
+            "rua": "Praça da Liberdade",
+            "bairro": "Funcionários",
+            "numero": "12",
+            "Cidade": "Belo Horizonte",
+            "estado": "Minas Gerais"
+        },
+        "pricePerHour": 25,
+        "bio": "Aulas econômicas e objetivas para quem precisa de prática rápida.",
+        "availability": [
+            "Quarta",
+            "Sexta",
+            "Sábado"
+        ],
+        "carModel": "Renault Sandero 2018",
+        "specialties": [
+            "Baliza",
+            "Estacionamento"
+        ],
+        "categories": [
+            "B"
+        ]
+    },
+    {
+        "name": "Patrícia Gomes",
+        "profileImage": "https://i.pravatar.cc/300?img=10",
+        "rating": 4.75,
+        "totalLessons": 200,
+        "experience": 7,
+        "location": {
+            "cep": 99999999,
+            "rua": "Alameda das Palmeiras",
+            "bairro": "Prados",
+            "numero": "88",
+            "Cidade": "Belo Horizonte",
+            "estado": "Minas Gerais"
+        },
+        "pricePerHour": 55,
+        "bio": "Instrutora com ênfase em técnicas de estacionamento e reciclagem.",
+        "availability": [
+            "Segunda",
+            "Terça",
+            "Quinta",
+            "Sexta"
+        ],
+        "carModel": "Hyundai HB20 2021",
+        "specialties": [
+            "Estacionamento",
+            "Reciclagem",
+            "Direção Defensiva"
+        ],
+        "categories": [
+            "B",
+            "AB"
+        ]
+    }
+]

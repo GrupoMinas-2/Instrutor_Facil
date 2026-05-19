@@ -138,8 +138,8 @@ export class StudentRepository {
 
         }
         
-        //return listDataStudents 
-        return baseStudentsRelation 
+        //return baseStudentsRelation 
+        return listDataStudents 
     }
     
     async getStudentsById(idStudent){
@@ -179,9 +179,51 @@ export class StudentRepository {
         ` 
         const valueIdStudent = idStudent
 
-        const dataStudent = await this.database.readData_one(queryJoinStudentRelationById , valueIdStudent)
+        const dataStudent = await this.database.readData_all(queryJoinStudentRelationById , valueIdStudent)
 
-        return dataStudent
+		const listDatesStudent = []
+		
+		for(let item of dataStudent){
+			
+			let student = listDatesStudent.find( std => std.id === item.student_id)
+
+			if(!student){
+
+				student = {
+					id: item.student_id,
+					name: item.student_name,
+					emai: item.email,
+					phone: item.phone,
+					cpf: item.cpf,
+					document_id: item.document_id,
+					birthdate: item.birthdate,
+					location: JSON.parse(item.location),
+					created_at: item.created_at, 
+					specialties:[],
+					categories:[]
+				}
+				listDatesStudent.push(student)
+			}
+
+
+			if(!student.specialties.find(spciality => spciality.id === item.specialty_id)){
+				student.specialties.push({
+					id: item.specialty_id, 
+					name: item.specialty_name
+				})
+			}
+
+			if(!student.categories.find(category => category.id === item.category_id)){
+				student.categories.push({
+					id: item.category_id,
+					name: item.category_name
+				})
+			}
+
+		}
+
+        //return dataStudent
+        return listDatesStudent
 
     }
 }
