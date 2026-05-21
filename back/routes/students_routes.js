@@ -1,13 +1,14 @@
 import express from 'express';
+import { Router } from 'express';
 import bodyParser from 'body-parser';
 import { StudentRepository } from '../data/repositories/studentRepository.js';
 
-const app = express(); 
+const studentRouter = Router(); 
 
-app.use(express.json());
+studentRouter.use(express.json());
 
 
-app.post('/student', async (req, res)=> {
+studentRouter.post('/', async (req, res)=> {
     
     const repoStudent = new StudentRepository();
     const objectStudent = Object(req.body);
@@ -19,7 +20,7 @@ app.post('/student', async (req, res)=> {
 })
 
 
-app.get('/students', async (req , res)=> {
+studentRouter.get('/', async (req , res)=> {
     
     const repoStudent = new StudentRepository(); 
     const listStudents = await repoStudent.getStudents(); 
@@ -27,7 +28,7 @@ app.get('/students', async (req , res)=> {
     res.json(listStudents);
 })
 
-app.get('/student/:idStudent', async (req, res) => {
+studentRouter.get('/:idStudent', async (req, res) => {
     const repoStudent = new StudentRepository()
     const idStudent = Number(req.params.idStudent)
     const searchStudentById = await repoStudent.getStudentsById(idStudent)
@@ -35,4 +36,5 @@ app.get('/student/:idStudent', async (req, res) => {
     res.json(searchStudentById)
 })
 
-app.listen(3333); 
+
+export default studentRouter

@@ -1,12 +1,13 @@
 import express from 'express';
+import { Router } from 'express';
 import bodyParser from 'body-parser';
 import {InstructorsRepository} from '../data/repositories/instructorsRepository.js'
 
-const app = express();
-app.use(express.json())
+const instructorRouter = Router();
+instructorRouter.use(express.json())
 
 
-app.get('/instructors', async (req , res) => {
+instructorRouter.get('/', async (req , res) => {
     const repoInstructor = new InstructorsRepository()
     const instructors = await repoInstructor.getInstructors()
 
@@ -14,7 +15,7 @@ app.get('/instructors', async (req , res) => {
 })
 
 
-app.get('/instructors/:id_Instructor', async (req , res) => {
+instructorRouter.get('/:id_Instructor', async (req , res) => {
 
     const repoInstructor = new InstructorsRepository()
     const instructor = await repoInstructor.getInstructorByID(Number(req.params.id_Instructor))
@@ -24,7 +25,7 @@ app.get('/instructors/:id_Instructor', async (req , res) => {
 })
 
 
-app.post('/instructor', async (req , res)=>{
+instructorRouter.post('/', async (req , res)=>{
 
     const objectInstructor = Object(req.body)
     const repoInstructor = new InstructorsRepository()
@@ -35,4 +36,4 @@ app.post('/instructor', async (req , res)=>{
     res.json(newInstructor)
 })
 
-app.listen(3333); 
+export default instructorRouter
