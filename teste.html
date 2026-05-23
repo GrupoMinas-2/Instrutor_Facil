@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="front/styles/home.css" />
   <link rel="stylesheet" href="front/styles/aluno-agenda.css" />
 </head>
+<<<<<<< HEAD
 <body>
   <header class="site-header">
     <div class="site-header__inner">
@@ -27,6 +28,42 @@
       <div class="header-actions">
         <a href="instrutor.html" class="btn btn--ghost btn--sm">Sou instrutor</a>
         <button class="btn btn--primary btn--sm">Entrar</button>
+=======
+<body class="bg-gray-50">
+  <!-- Header ------------------------------------------------ -->
+  <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <!-- Logo -->
+        <a href="#" onclick="navigate('home'); return false;" class="flex items-center gap-2">
+          <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+          </div>
+          <span class="font-bold text-xl">AutoAula</span>
+        </a>
+
+        <!-- Navigation - Desktop -->
+        <nav class="hidden md:flex items-center gap-8">
+          <a href="#" onclick="navigate('home'); return false;" class="text-gray-700 hover:text-gray-900">Instrutores</a>
+          <a href="#como-funciona" class="text-gray-700 hover:text-gray-900">Como Funciona</a>
+          <a href="#" class="text-gray-700 hover:text-gray-900">Ajuda</a>
+        </nav>
+
+        <!-- Actions -->
+        <div class="flex items-center gap-4">
+          <a href="cadastro-instrutor.html" class="hidden md:block px-4 py-2 text-gray-700 hover:text-gray-900">
+              Sou Instrutor
+          </a>
+          <button class="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+            </svg>
+            <span class="hidden md:inline">Entrar</span>
+          </button>
+        </div>
+>>>>>>> main
       </div>
     </div>
   </header>
