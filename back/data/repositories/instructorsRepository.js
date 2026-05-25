@@ -16,7 +16,8 @@ export class InstructorsRepository{
 
   categoriesMocked= [
     {id: 1, name: 'B'},
-    {id: 2, name: 'AB'}
+    {id: 2, name: 'AB'},
+    {id: 3, name: 'A'}
   ]
 
   async insertIntructor(instructorEntity){
@@ -28,34 +29,42 @@ export class InstructorsRepository{
     instructorEntity.carModel];
 
     const insertInstructor = await this.database.setData_one(queryInsertInstructor, valuesInstructor);
-    
 
-    const instructorSpecialist= this.specialtiesMocked.filter( iten => instructorEntity.specialties.includes(iten.name) );
-    const instructorCategories= this.categoriesMocked.filter( iten => instructorEntity.categories.includes(iten.name) ) 
-    //const instructorCategories= this.categoriesMocked
-    
-    const placeholdersSpecialties = instructorSpecialist.map( () => '(?,?)').join(',')
-    const placeholdersCategories = instructorCategories.map(() => '(?,?)').join(',')
+    const normalizedSpecialties = (instructorEntity.specialties || []).map(item => String(item).toLowerCase());
+    const normalizedCategories = (instructorEntity.categories || []).map(item => String(item).toLowerCase());
 
-    let queryInstructorSpecialities = `INSERT INTO instructor_specialties (instructor_id, specialty_id) VALUES ${placeholdersSpecialties}`;
-    let queryInstructorCategories = `INSERT INTO instructor_categories (instructor_id, category_id) VALUES ${placeholdersCategories}`
+    const instructorSpecialist = this.specialtiesMocked.filter(iten =>
+      normalizedSpecialties.includes(iten.name.toLowerCase())
+    );
+    const instructorCategories = this.categoriesMocked.filter(iten =>
+      normalizedCategories.includes(iten.name.toLowerCase())
+    );
 
+    const valuesInstructorSpecialties = [];
+    const valuesInstructorCategories = [];
 
-    const valuesInstructorSpecialties= []
-    const valuesInstructorCategories = []
-    
-    for(let iten in instructorSpecialist){
-      valuesInstructorSpecialties.push( insertInstructor.lastID, instructorSpecialist[iten].id )
+    let insertSpecialtiesAndInstructor = null;
+    let insertCategoriesAndInstructor = null;
+
+    if (instructorSpecialist.length > 0) {
+      const placeholdersSpecialties = instructorSpecialist.map(() => '(?,?)').join(',');
+      const queryInstructorSpecialities = `INSERT INTO instructor_specialties (instructor_id, specialty_id) VALUES ${placeholdersSpecialties}`;
+      for (const specialty of instructorSpecialist) {
+        valuesInstructorSpecialties.push(insertInstructor.lastID, specialty.id);
+      }
+      insertSpecialtiesAndInstructor = await this.database.setData_one(queryInstructorSpecialities, valuesInstructorSpecialties);
     }
-    for(let iten in instructorCategories){
-      valuesInstructorCategories.push( insertInstructor.lastID, instructorCategories[iten].id )
-      
+
+    if (instructorCategories.length > 0) {
+      const placeholdersCategories = instructorCategories.map(() => '(?,?)').join(',');
+      const queryInstructorCategories = `INSERT INTO instructor_categories (instructor_id, category_id) VALUES ${placeholdersCategories}`;
+      for (const category of instructorCategories) {
+        valuesInstructorCategories.push(insertInstructor.lastID, category.id);
+      }
+      insertCategoriesAndInstructor = await this.database.setData_one(queryInstructorCategories, valuesInstructorCategories);
     }
 
-    const insertSpecialtiesAndInstructor = await this.database.setData_one(queryInstructorSpecialities , valuesInstructorSpecialties)
-    const insertCategoriesAndInstructor = await this.database.setData_one(queryInstructorCategories, valuesInstructorCategories)
-
-    return [insertInstructor , insertSpecialtiesAndInstructor, insertCategoriesAndInstructor]
+    return [insertInstructor, insertSpecialtiesAndInstructor, insertCategoriesAndInstructor];
 
   };
   

@@ -3,6 +3,70 @@
    Carregado via <script> antes dos scripts da página
    ============================================ */
 
+// Removido import inválido para ambiente browser
+// Expor `searchInstructors` como função global para uso em `onclick`
+window.searchInstructors = async function() {
+  try {
+    const response = await fetch('http://localhost:3333/instructors');
+    const dataJson = await response.json();
+    
+    if (!Array.isArray(dataJson)) {
+      console.warn('Resposta do servidor não é um array:', dataJson);
+      return [];
+    }
+    
+    // Agrupar instrutores por ID (servidor retorna múltiplas linhas por instrutor)
+    const instructorMap = new Map();
+    
+    for (let element of dataJson) {
+      const instructorId = element.id;
+      
+      if (!instructorMap.has(instructorId)) {
+        instructorMap.set(instructorId, {
+          id: element.id,
+          name: element.name,
+          photo: element.image_profile || 'https://www.shutterstock.com/pt/search/default-profile-image?image_type=illustration',
+          rating: element.rating || 0,
+          reviews: element.total_lessons || 0,
+          experience: element.experience || 0,
+          pricePerHour: element.price_per_hour || 0,
+          location: element.location,
+          categories: [],
+          specialties: [],
+          car: element.car_model || '',
+          bio: element.bio || '',
+        });
+      }
+      
+      const instructor = instructorMap.get(instructorId);
+      
+      // Adicionar category se não existir
+      if (element.categories && !instructor.categories.find(c => c.name === element.categories[0]?.name)) {
+        instructor.categories.push(...(element.categories || []));
+      }
+      
+      // Adicionar specialty se não existir
+      if (element.specialties && !instructor.specialties.find(s => s.name === element.specialties[0]?.name)) {
+        instructor.specialties.push(...(element.specialties || []));
+      }
+    }
+    
+    // Converter para array e extrair apenas nomes de categorias e especialidades
+    const listInstructors = Array.from(instructorMap.values()).map(inst => ({
+      ...inst,
+      categories: inst.categories.map(c => c.name),
+      specialties: inst.specialties.map(s => s.name),
+    }));
+    
+    console.log(`Carregados ${listInstructors.length} instrutores do servidor`, listInstructors);
+    return listInstructors;
+
+  } catch (error) {
+    console.error('Erro ao buscar instrutores:', error);
+    return [];
+  }
+};
+
 window.AutoAulaData = (function () {
   const today = new Date();
   const isoDate = (offset) => {
@@ -12,6 +76,9 @@ window.AutoAulaData = (function () {
   };
 
   // ---- Instrutores (lista pública / busca) ----
+  // Nota: home.js carrega dados do servidor via searchInstructors()
+  // Estes dados mockados servem como fallback se o servidor não responder
+  
   const instructors = [
     {
       id: "i1",
