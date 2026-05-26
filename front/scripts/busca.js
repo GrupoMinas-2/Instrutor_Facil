@@ -1,5 +1,4 @@
 (function () {
-  const { instructors } = window.AutoAulaData;
   const grid = document.getElementById("results-grid");
   const empty = document.getElementById("results-empty");
   const count = document.getElementById("results-count");
@@ -10,6 +9,7 @@
     maxPrice: 100,
     minRating: 0,
     sort: "rating",
+    instructors: [],
   };
 
   // Pré-preenche filtros via querystring (vindo do hero)
@@ -26,7 +26,7 @@
   }
 
   function render() {
-    let list = instructors.filter((i) => {
+    const list = state.instructors.filter((i) => {
       if (state.location && !i.location.toLowerCase().includes(state.location.toLowerCase())) return false;
       if (state.cats.size > 0 && !i.categories.some((c) => state.cats.has(c))) return false;
       if (i.pricePerHour > state.maxPrice) return false;
@@ -71,6 +71,23 @@
         </div>
       </article>
     `).join("");
+  }
+
+  async function loadInstructors() {
+    try {
+      const instructors = await window.searchInstructors();
+      if (Array.isArray(instructors) && instructors.length > 0) {
+        state.instructors = instructors;
+      } else {
+        console.warn('Nenhum instrutor retornado pelo servidor, usando fallback mock.');
+        state.instructors = window.AutoAulaData?.instructors || [];
+      }
+    } catch (error) {
+      console.error('Erro ao carregar instrutores do servidor:', error);
+      state.instructors = window.AutoAulaData?.instructors || [];
+    }
+
+    render();
   }
 
   // Listeners
@@ -119,5 +136,5 @@
     render();
   });
 
-  render();
+  loadInstructors();
 })();

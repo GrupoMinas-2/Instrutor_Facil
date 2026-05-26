@@ -4,8 +4,8 @@
     const grid = document.getElementById("featured-grid");
     if (!grid) return;
     
-    const top = [...instructors].sort((a, b) => b.rating - a.rating).slice(0, 4);
-    
+    const top = [...instructors].sort((a, b) => b.rating - a.rating).slice(0, 12);
+
     grid.innerHTML = top.map((i) => `
       <article class="instructor-card">
         <img class="instructor-card__img" src="${i.photo}" alt="Foto de ${i.name}" />
@@ -60,4 +60,5 @@
     if (cat) params.set("cat", cat);
     window.location.href = `busca.html${params.toString() ? "?" + params : ""}`;
   });
+
 })();
