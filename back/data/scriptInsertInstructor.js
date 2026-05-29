@@ -12,9 +12,10 @@ async function readJson(){
         }
     })*/
 
-    const arquivoJson= await fs.readFile('back/data/repositories/listInstructor.json', 'utf-8')
+    const arquivoJson= await fs.readFile('back/data/listInstructor.json', 'utf-8')
 
     const dado = JSON.parse(arquivoJson)
+    //const dado = arquivoJson
 
     console.log(dado)
 
@@ -43,7 +44,7 @@ function executeInsertValues(){
 
     for (let iten of listObjectsInstructors){
         
-        fetch('http://localhost:3333/instructor', {
+        fetch('http://localhost:3333/instructors', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -60,6 +61,7 @@ function executeInsertValues(){
 
 console.log(listResults)
 
+executeInsertValues()
 
 //fetch('http://localhost:3333/instructors').then(result => result.json()).then(object => console.log(object))
 

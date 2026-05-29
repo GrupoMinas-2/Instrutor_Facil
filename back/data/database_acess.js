@@ -189,17 +189,17 @@ async function insertOtherDatas () {
         filename: 'back/data/base.db',
         driver: sqlite3.Database
     });
-    /*
-        db.run(`INSERT INTO categories(name) VALUES ('B'), ('AB')`);
+    
+    //db.run(`INSERT INTO categories(name) VALUES ('C'), ('D'), ('E')`);
 
-        db.run(`INSERT INTO categories(name) VALUES ('A')`);
-        
-        db.run(`INSERT INTO specialties(name) VALUES
-                ('Baliza'),
-                ('Direção Defensiva'), ('Reciclagem'), 
-                ('Moto'), ('Estacionamento')
-        `);
-    */
+    //db.run(`INSERT INTO categories(name) VALUES ('A')`);
+    
+    /*db.run(`INSERT INTO specialties(name) VALUES
+            ('Baliza'),
+            ('Direção Defensiva'), ('Reciclagem'), 
+            ('Moto'), ('Estacionamento')
+    `);*/
+    
 };
 
 async function deltetValues(){

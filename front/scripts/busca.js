@@ -56,7 +56,7 @@
             <span>(${i.reviews})</span>
             <span>· ${i.experience} anos</span>
           </div>
-          <div class="instructor-card__loc">📍 ${i.location}</div>
+          <div class="instructor-card__loc">📍 ${i.location.Cidade}</div>
           <div class="instructor-card__tags">
             ${i.categories.map((c) => `<span class="instructor-card__tag">CNH ${c}</span>`).join("")}
             ${i.specialties.slice(0, 1).map((s) => `<span class="instructor-card__tag">${s}</span>`).join("")}

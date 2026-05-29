@@ -17,7 +17,10 @@ export class InstructorsRepository{
   categoriesMocked= [
     {id: 1, name: 'B'},
     {id: 2, name: 'AB'},
-    {id: 3, name: 'A'}
+    {id: 3, name: 'A'},
+    {id: 4, name: 'C'},
+    {id: 5, name: 'D'},
+    {id: 6, name: 'E'}
   ]
 
   async insertIntructor(instructorEntity){

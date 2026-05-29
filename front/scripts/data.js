@@ -3,7 +3,6 @@
    Carregado via <script> antes dos scripts da página
    ============================================ */
 
-// Removido import inválido para ambiente browser
 // Expor `searchInstructors` como função global para uso em `onclick`
 window.searchInstructors = async function() {
   try {

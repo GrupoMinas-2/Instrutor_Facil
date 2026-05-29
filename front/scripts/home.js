@@ -15,7 +15,7 @@
             <strong>★ ${i.rating}</strong>
             <span>(${i.reviews} avaliações)</span>
           </div>
-          <div class="instructor-card__loc">📍 ${i.location}</div>
+          <div class="instructor-card__loc">📍 ${i.location.Cidade}</div>
           <div class="instructor-card__footer">
             <div class="instructor-card__price">
               <strong>R$ ${i.pricePerHour}</strong>

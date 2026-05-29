@@ -1,7 +1,7 @@
 [
     {
         "name": "Eduardo Gabriel",
-        "profileImage": "https://i.pravatar.cc/300?img=1",
+        "profileImage": "https://thumbs.dreamstime.com/b/indiv%C3%ADduo-mais-idoso-de-sorriso-com-os-bra%C3%A7os-cruzados-70484241.jpg",
         "rating": 4.9,
         "totalLessons": 120,
         "experience": 4,
@@ -29,12 +29,12 @@
         ],
         "categories": [
             "B",
-            "AB"
+            "A"
         ]
     },
     {
         "name": "Mariana Silva",
-        "profileImage": "https://i.pravatar.cc/300?img=2",
+        "profileImage": "https://s2.glbimg.com/Kc6TC6rW3kFZ0hwbW1dGtngcK8Y=/620x345/e.glbimg.com/og/ed/f/original/2022/04/12/foto-iza.jpeg",
         "rating": 4.7,
         "totalLessons": 230,
         "experience": 8,
@@ -66,7 +66,7 @@
     },
     {
         "name": "Roberto Almeida",
-        "profileImage": "https://i.pravatar.cc/300?img=3",
+        "profileImage": "https://media.istockphoto.com/id/1483109187/pt/foto/man-outdoor-senior-happy-retirement-elderly-portrait-male-active-park-smiling-old-fun-nature.jpg?s=612x612&w=0&k=20&c=EFnXZb3clSx-L-aXv0ssWD3m46AuWsTOhl8eVEtpWjE=",
         "rating": 4.8,
         "totalLessons": 891,
         "experience": 20,
@@ -95,12 +95,12 @@
         ],
         "categories": [
             "B",
-            "AB"
+            "A"
         ]
     },
     {
         "name": "Camila Rodrigues",
-        "profileImage": "https://i.pravatar.cc/300?img=4",
+        "profileImage": "https://habilitacao.cfcsilvalobo.com/auto-escola/imagens/primeiro-habilitacao-valores.jpg",
         "rating": 4.6,
         "totalLessons": 150,
         "experience": 6,
@@ -132,7 +132,7 @@
     },
     {
         "name": "Lucas Pereira",
-        "profileImage": "https://i.pravatar.cc/300?img=5",
+        "profileImage": "https://www.unijui.edu.br/arquivos/tinyMCE4/comunica1/Forma%C3%A7%C3%A3o%20de%20Instrutor%20de%20Tr%C3%A2nsito_Imagem%20Curso.jpg",
         "rating": 4.5,
         "totalLessons": 300,
         "experience": 10,
@@ -158,13 +158,14 @@
             "Reciclagem"
         ],
         "categories": [
+            "C",
             "B",
-            "AB"
+            "E"
         ]
     },
     {
         "name": "Ana Beatriz",
-        "profileImage": "https://i.pravatar.cc/300?img=6",
+        "profileImage": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=316,h=272,fit=crop,trim=62.06896551724138;31.03448275862069;173.79310344827587;68.27586206896552/A3QwRJ20BWhyZ3eN/design-sem-nome-3-m5KwRMy13MuPbE98.png",
         "rating": 4.4,
         "totalLessons": 95,
         "experience": 3,
@@ -195,7 +196,7 @@
     },
     {
         "name": "Thiago Souza",
-        "profileImage": "https://i.pravatar.cc/300?img=7",
+        "profileImage": "https://media.istockphoto.com/id/1331257339/pt/foto/portrait-of-happy-mature-man-wearing-spectacles-and-looking-at-camera-indoor.jpg?s=612x612&w=0&k=20&c=UGyByb-PyXNZY0ho8U45PfMoqBKxbKkMsWxtVFbAdnM=",
         "rating": 4.3,
         "totalLessons": 410,
         "experience": 12,
@@ -226,7 +227,7 @@
     },
     {
         "name": "Fernanda Costa",
-        "profileImage": "https://i.pravatar.cc/300?img=8",
+        "profileImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWu613nnJN3PXyJhngh-pGwbc5xHUjjXy5lQ&s",
         "rating": 4.9,
         "totalLessons": 520,
         "experience": 15,
@@ -254,12 +255,12 @@
         ],
         "categories": [
             "B",
-            "AB"
+            "E"
         ]
     },
     {
         "name": "Eduardo Martins",
-        "profileImage": "https://i.pravatar.cc/300?img=9",
+        "profileImage": "https://static.vecteezy.com/system/resources/previews/072/329/217/non_2x/closeup-portrait-of-happy-handsome-bearded-man-in-casual-outfit-home-interior-cheerful-middle-aged-man-relaxing-in-cozy-living-room-smiling-at-camera-copy-space-photo.jpg",
         "rating": 4.2,
         "totalLessons": 60,
         "experience": 2,
@@ -289,7 +290,7 @@
     },
     {
         "name": "Patrícia Gomes",
-        "profileImage": "https://i.pravatar.cc/300?img=10",
+        "profileImage": "https://img.magnific.com/fotos-gratis/aproximacao-de-uma-senhora-caucasiana-de-meia-idade-na-camisa-preta-com-sorriso-no-rosto-olha-para-a-camera-no-fundo-desfocado_197531-31170.jpg",
         "rating": 4.75,
         "totalLessons": 200,
         "experience": 7,
@@ -316,8 +317,9 @@
             "Direção Defensiva"
         ],
         "categories": [
+            "A",
             "B",
-            "AB"
+            "D"
         ]
     }
 ]
