@@ -1,0 +1,30 @@
+@startuml
+
+entity INSTRUCTOR {
+    *id : INTEGER <<PK>>
+    --
+    name : TEXT
+    price_per_hour : REAL
+    rating : REAL
+}
+
+entity STUDENT {
+    *id : INTEGER <<PK>>
+    --
+    name : TEXT
+    email : TEXT
+}
+
+entity LESSON {
+    *id : INTEGER <<PK>>
+    --
+    instructor_id : INTEGER <<FK>>
+    student_id : INTEGER <<FK>>
+    scheduled_date : DATE
+    status : TEXT
+}
+
+INSTRUCTOR ||--o{ LESSON
+STUDENT ||--o{ LESSON
+
+@enduml

@@ -1,0 +1,75 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+abstract class User {
+    +id : Integer
+    +name : String
+    +location : JSON
+    +imageProfile : String
+    +bio : String
+    +birthDate : Date
+    +phone : String
+    +email : String
+    +cpf : String
+    +createdAt : DateTime
+}
+
+class Student {
+    +documentId : String
+}
+
+class Instructor {
+    +rating : Float
+    +experience : Integer
+    +totalLessons : Integer
+    +pricePerHour : Decimal
+    +availability : JSON
+    +carModel : String
+}
+
+class Specialty {
+    +id : Integer
+    +name : String
+    +description : String
+}
+
+class Category {
+    +id : Integer
+    +name : String
+    +description : String
+}
+
+class Lesson {
+    +id : Integer
+    +scheduledDate : Date
+    +startTime : Time
+    +endTime : Time
+    +status : String
+    +location : String
+    +notes : String
+}
+
+class Review {
+    +id : Integer
+    +rating : Integer
+    +comment : String
+    +createdAt : DateTime
+}
+
+User <|-- Student
+User <|-- Instructor
+
+Instructor "1" -- "0..*" Lesson
+Student "1" -- "0..*" Lesson
+
+Instructor "1" -- "0..*" Review
+Student "1" -- "0..*" Review
+
+Instructor "*" -- "*" Specialty
+Student "*" -- "*" Specialty
+
+Instructor "*" -- "*" Category
+Student "*" -- "*" Category
+
+@enduml
