@@ -1,0 +1,49 @@
+@startuml
+
+left to right direction
+
+actor Aluno
+actor Instrutor
+
+rectangle "Plataforma Instrutor Fácil" {
+
+    usecase "Cadastrar Conta" as UC1
+
+    usecase "Buscar Instrutores" as UC2
+    usecase "Filtrar Instrutores" as UC3
+    usecase "Visualizar Perfil do Instrutor" as UC4
+
+    usecase "Agendar Aula" as UC5
+    usecase "Visualizar Agendamentos" as UC6
+
+    usecase "Avaliar Instrutor" as UC7
+
+    usecase "Gerenciar Perfil" as UC8
+    usecase "Gerenciar Disponibilidade" as UC9
+
+    usecase "Receber Solicitação de Aula" as UC10
+    usecase "Confirmar Agendamento" as UC11
+
+}
+
+Aluno --> UC1
+Aluno --> UC2
+Aluno --> UC3
+Aluno --> UC4
+Aluno --> UC5
+Aluno --> UC6
+Aluno --> UC7
+
+
+Instrutor --> UC1
+Instrutor --> UC8
+Instrutor --> UC9
+Instrutor --> UC10
+Instrutor --> UC11
+Instrutor --> UC6
+
+UC4 ..> UC2 : <<include>>
+UC5 ..> UC4 : <<include>>
+UC7 ..> UC5 : <<extend>>
+
+@enduml
