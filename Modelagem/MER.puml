@@ -1,30 +1,150 @@
 @startuml
 
-entity INSTRUCTOR {
-    *id : INTEGER <<PK>>
+hide circle
+skinparam linetype ortho
+
+entity "INSTRUCTORS" as instructors {
+    * id : INTEGER <<PK>>
     --
     name : TEXT
-    price_per_hour : REAL
+    image_profile : TEXT
     rating : REAL
+    total_lessons : INTEGER
+    experience : INTEGER
+    location : TEXT
+    price_per_hour : REAL
+    bio : TEXT
+    car_model : TEXT
 }
 
-entity STUDENT {
-    *id : INTEGER <<PK>>
+entity "STUDENTS" as students {
+    * id : INTEGER <<PK>>
     --
     name : TEXT
     email : TEXT
+    phone : INTEGER
+    cpf : INTEGER
+    document_id : INTEGER
+    birthdate : TEXT
+    location : TEXT
+    created_at : TEXT
 }
 
-entity LESSON {
-    *id : INTEGER <<PK>>
+entity "SPECIALTIES" as specialties {
+    * id : INTEGER <<PK>>
+    --
+    name : TEXT
+}
+
+entity "CATEGORIES" as categories {
+    * id : INTEGER <<PK>>
+    --
+    name : TEXT
+}
+
+entity "INSTRUCTOR_SPECIALTIES" as instructor_specialties {
+    * instructor_id : INTEGER <<PK,FK>>
+    * specialty_id : INTEGER <<PK,FK>>
+}
+
+entity "INSTRUCTOR_CATEGORIES" as instructor_categories {
+    * instructor_id : INTEGER <<PK,FK>>
+    * category_id : INTEGER <<PK,FK>>
+}
+
+entity "STUDENT_SPECIALTIES" as student_specialties {
+    * student_id : INTEGER <<PK,FK>>
+    * specialty_id : INTEGER <<PK,FK>>
+}
+
+entity "STUDENT_CATEGORIES" as student_categories {
+    * student_id : INTEGER <<PK,FK>>
+    * category_id : INTEGER <<PK,FK>>
+}
+
+entity "LESSONS" as lessons {
+    * id : INTEGER <<PK>>
     --
     instructor_id : INTEGER <<FK>>
     student_id : INTEGER <<FK>>
-    scheduled_date : DATE
+    lesson_date : TEXT
+    start_time : TEXT
+    end_time : TEXT
+    price : REAL
     status : TEXT
+    lesson_location : TEXT
+    notes : TEXT
+    created_at : TEXT
 }
 
-INSTRUCTOR ||--o{ LESSON
-STUDENT ||--o{ LESSON
+entity "PAYMENTS" as payments {
+    * id : INTEGER <<PK>>
+    --
+    lesson_id : INTEGER <<FK>>
+    amount : INTEGER
+    method : TEXT
+    status : TEXT
+    paid_at : TEXT
+}
+
+entity "REVIEWS" as reviews {
+    * id : INTEGER <<PK>>
+    --
+    lesson_id : INTEGER <<FK>>
+    student_id : INTEGER <<FK>>
+    instructor_id : INTEGER <<FK>>
+    rating_score : INTEGER
+    comment : TEXT
+    created_at : TEXT
+}
+
+entity "INSTRUCTOR_AVAILABILITY" as availability {
+    * id : INTEGER <<PK>>
+    --
+    instructor_id : INTEGER <<FK>>
+    days_week : TEXT
+    working_time : TEXT
+    lunchtime : TEXT
+    blocked_days : TEXT
+}
+
+'========================
+' RELACIONAMENTOS
+'========================
+
+instructors ||--o{ lessons
+students ||--o{ lessons
+
+lessons ||--|| payments
+lessons ||--o| reviews
+
+students ||--o{ reviews
+instructors ||--o{ reviews
+
+instructors ||--|| availability
+
+instructors ||--|{ instructor_specialties
+specialties ||--o{ instructor_specialties
+
+students ||--o{ student_specialties
+specialties ||--o{ student_specialties
+
+instructors ||--|{ instructor_categories
+categories ||--o{ instructor_categories
+
+students ||--o{ student_categories
+categories ||--o{ student_categories
+
+'----------------------------------
+' interpretação das cardinalidades: 
+'   ||------||
+'   Exatamente um
+'   ||------o|
+'   Zero ou um
+'   ||------o{
+'   Zero ou muitos
+'   ||------|{
+'   Um ou muitos
+'----------------------------------
 
 @enduml

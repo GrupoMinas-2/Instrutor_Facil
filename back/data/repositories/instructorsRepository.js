@@ -1,3 +1,4 @@
+import { json } from 'express';
 import {DbAcess} from '../database_acess.js'
 
 export class InstructorsRepository{
@@ -248,6 +249,39 @@ export class InstructorsRepository{
     return listDatesInstructors
   }
 
+
+  async insertInstructorAvailability(objectAvailability){
+
+    const queryInsertAvailability= `INSERT INTO instructor_availability ( instructor_id, days_week, working_time, lunchtime, blocked_days) VALUES (?,?,?,?,?)`
+
+    const valuesAvailability = [objectAvailability.instructorId, objectAvailability.daysWeek, objectAvailability.workingTime, objectAvailability.lunchtime, objectAvailability.blockedDays]
+
+    try {
+      const availability = await this.database.setData_one(queryInsertAvailability, valuesAvailability)
+      return availability
+
+    } catch (error) {
+      return {
+        status: 'erro',
+        mensage: `${error}`
+      }
+    }
+
+  }
+
+  async getInstructorAvailability(){
+    const queryGetAvailability = `SELECT * FROM instructor_availability`
+
+    try {
+      const instructorAvailability = await this.database.readData_all(queryGetAvailability)
+    } catch (error) {
+      return {
+        status: 'erro',
+        mensage: `${error}`
+      }
+    }
+
+  }
 }
 
 
@@ -369,6 +403,20 @@ instructorsMocked : [
 //repository.insertIntructor(professor).then(retorno => console.log(retorno))
 //repository.getInstructorByID(34).then(retorno => console.log(retorno))
 
+const repository = new InstructorsRepository()
 
+const availability = {
+  instructorId: 1 ,
+	daysWeek:'[SEGUNDA, TERÇA, QUARTA]',
+	workingTime:`{
+    init: '08:00',
+    final: '18:00'
+  }`,
+	lunchtime:'12:00',
+	blockedDays:"['2026-07-09']",
+}
+
+//repository.insertInstructorAvailability(availability).then(item => console.log(item))
+repository.getInstructorAvailability().then(item => JSON.stringify(item)).then(item => console.log(item))
 
 
