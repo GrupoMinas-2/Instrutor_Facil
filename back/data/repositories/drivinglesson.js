@@ -95,8 +95,8 @@ const testeleason =  {
     instructorId: 2,
     studentId: 3,
     lessonDate: 'yyyy-mm-dd',
-    startTime: 'hh-mm',
-    endTime: 'hh-mm',
+    startTime: 'hh:mm',
+    endTime: 'hh:mm',
     price: 99.00 ,
     status: 'ABERTO',
     lessonLocation:`{
@@ -108,10 +108,10 @@ const testeleason =  {
         "estado": "Minas Gerais"
     }`,
     notes: "cmentário",
-    createdAt: 'yyyy-mm-dd|hh-mm'
+    createdAt: 'yyyy-mm-dd|hh:mm'
 }
 
 //respository.insertDrivingLesson(testeleason).then(iten => console.log(iten))
 //respository.getListDrivingLesson().then(iten => console.log(iten))
 //respository.getDrivingLessonByID(2).then(iten => console.log(iten))
-respository.getDrivingLessonForUsers(3, null).then(iten => console.log(iten))
+//respository.getDrivingLessonForUsers(3, null).then(iten => console.log(iten))
