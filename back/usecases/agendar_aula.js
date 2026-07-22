@@ -1,14 +1,13 @@
 /*
 Busca de disponibilidade
-- O sistema devera consultar a disponibilidade do instrutor baseada em seus horários livres
-- O sistema levará em consideração a disponibilidade de dias e horários de atuação definidos pelo instrutor em seu perfil.
-- O sistema deve verificar os agendamentos desse mesmo instrutor dentro da faixa de disponibilidade do instrutor em dias e horas
-- O sistema deve exibir apenas os horários disponíveis encontrados no banco
-- O sistema deve consultar a disponibilidade do instrutor após o aluno confirmar o agendament
+ [x] O sistema devera consultar a disponibilidade do instrutor baseada em seus horários livres
+ [x] O sistema levará em consideração a disponibilidade de dias e horários de atuação do instrutor.
+ [ ] O sistema deve verificar os agendamentos desse mesmo instrutor em dias e horas
+ [ ] O sistema deve exibir apenas os horários disponíveis encontrados no banco
+ [ ] O sistema deve consultar a disponibilidade do instrutor após o aluno confirmar o agendament
 */
 
-
-import { DrivingLessonRepository } from "../data/repositories/drivinglesson.js"; 
+import { DrivingLessonRepository } from "../data/repositories/drivinglessonRepository.js"; 
 import { InstructorsRepository } from "../data/repositories/instructorsRepository.js";
 import { StudentRepository } from "../data/repositories/studentRepository.js" 
 
@@ -64,6 +63,14 @@ class ScheduleLesson{
         }
         
         const instructorId = scheduling.instructorId
+        const instructorLessons= await this.lessonReopo.getDrivingLessonForUsers(null, instructorId)
+        const instructorLessonsTimes= instructorLessons.drive_leasons.map( iten =>{
+            return{
+                init: replaceHours(iten.start_time),
+                final: replaceHours(iten.end_time)
+            }
+        })
+
         const schedulingDate = new Date(scheduling.lessonDate)
         const schedulingDayWeek = schedulingDate.getUTCDay()
         const schedulingTime ={
@@ -89,17 +96,19 @@ class ScheduleLesson{
 
         const validateWorkigHour = validateHour(schedulingTime, availabilityWorkTime)
         const validatelunchHour = validateHour(schedulingTime, availabilityLunchTime, false)
+        
+        const validateAppointments = instructorLessonsTimes.find(iten => validateHour(schedulingTime, iten))
 
-        if(validateBlokedDays || validateDaysWeek){
+        
+        if(validateBlokedDays || !validateDaysWeek){
             return {
                 available: false,
                 mensage: `Data ${scheduling.lessonDate} indisponivel para agendamento de aulas`,
-                days_week: availabilityDaysWeek,
                 blocked_days: availabilityBlockedDays, 
-
+                days_week: availabilityDaysWeek
             }
         }
-        if(!validateWorkigHour && !validatelunchHour ){
+        if((!validateWorkigHour && !validatelunchHour) || validateAppointments){
             return {
                 available: false,
                 mensage: `Horario (${scheduling.startTime} a ${scheduling.endTime}) indisponivel para agendamento de aulas`,
@@ -115,17 +124,24 @@ class ScheduleLesson{
         
     }
 
-    createScheduling(schedulingSelected) {
-        /* 
-        1- confere disponibilidade
-        2- agendar aula 
-        3- ou apresentar mensagem de falha 
-        */
+    async createScheduling(schedulingSelected) {
+      
+        const validateAvailability = await this.checkAvailabilityOfInstructor(schedulingSelected)
 
-        //const validateAvailability = this.checkAvailabilityOfInstructor(schedulingSelected)
-        const instructorId = scheduling.instructorId
+        if(validateAvailability.available){
+            
+            const lesson= await this.lessonReopo.insertDrivingLesson(schedulingSelected)
+            return {
+                mensage: 'Agendamento criado',
+                check_availability: validateAvailability, 
+                create_scheduling: lesson
+            }
+        }
 
-
+        return {
+            mensage: 'Falha ao agendar nova aula',
+            reason: validateAvailability
+        }
 
     }
 
@@ -157,3 +173,4 @@ const testeleason =  {
     }
 
 //usecase.checkAvailabilityOfInstructor(testeleason).then(iten=> console.log(iten))
+usecase.createScheduling(testeleason).then(iten=> console.log(iten))

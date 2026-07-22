@@ -29,7 +29,9 @@ export class DrivingLessonRepository {
 
         const queryInsertLesson = ` INSERT INTO lessons (instructor_id, student_id, lesson_date, start_time, end_time, price, status, lesson_location, notes, created_at) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?)` 
 
-        const valuesLesson =  [objectLesson.instructorId, objectLesson.studentId, objectLesson.lessonDate,objectLesson.startTime, objectLesson.endTime, objectLesson.price, objectLesson.status,objectLesson.lessonLocation, objectLesson.notes, objectLesson.createdAt]
+        const createdAt= new Date()
+        
+        const valuesLesson =  [objectLesson.instructorId, objectLesson.studentId, objectLesson.lessonDate,objectLesson.startTime, objectLesson.endTime, objectLesson.price, objectLesson.status,objectLesson.lessonLocation, objectLesson.notes, createdAt ]
 
         try {
             const drivingLesson = await this.database.setData_one(queryInsertLesson, valuesLesson)
@@ -114,4 +116,4 @@ const testeleason =  {
 //respository.insertDrivingLesson(testeleason).then(iten => console.log(iten))
 //respository.getListDrivingLesson().then(iten => console.log(iten))
 //respository.getDrivingLessonByID(2).then(iten => console.log(iten))
-//respository.getDrivingLessonForUsers(3, null).then(iten => console.log(iten))
+//respository.getDrivingLessonForUsers(null, 2).then(iten => console.log(iten))
