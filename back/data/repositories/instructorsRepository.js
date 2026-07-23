@@ -1,7 +1,8 @@
+import { json } from 'express';
 import {DbAcess} from '../database_acess.js'
 
 export class InstructorsRepository{
-
+  
   database = new DbAcess();
   
   // dados para passar para um ".env!"
@@ -13,7 +14,7 @@ export class InstructorsRepository{
     {id: 5, name: 'Moto'}, 
     {id: 6, name: 'Estacionamento'}
   ];
-
+  
   categoriesMocked= [
     {id: 1, name: 'B'},
     {id: 2, name: 'AB'},
@@ -22,6 +23,27 @@ export class InstructorsRepository{
     {id: 5, name: 'D'},
     {id: 6, name: 'E'}
   ]
+  
+  parseJsonArray(value, dataContext){
+    
+    if(!Array.isArray(value)){
+
+      try {
+        const parsed = JSON.parse(value)
+        if (Array.isArray(parsed) || typeof value == 'object' || typeof value == 'string' ) {
+          return parsed
+        }
+      } catch (error) {
+        return {
+          erro: error, 
+          mensage: `erro ao trasnsformar o retorno do banco em Obejeto JavaScript - ${dataContext}`
+        }
+      }
+      
+    }
+    return value
+  }
+
 
   async insertIntructor(instructorEntity){
     const queryInsertInstructor = `INSERT INTO instructors (name, image_profile, rating, total_lessons, experience, location, price_per_hour, bio, availability, car_model) 
@@ -153,7 +175,6 @@ export class InstructorsRepository{
     return listInstructors
   }
 
-
   async getInstructorByID( idInstructor, specialties = true, categories = true){
     
     const queryJoinInstructorRelation = `
@@ -248,6 +269,63 @@ export class InstructorsRepository{
     return listDatesInstructors
   }
 
+
+  async insertInstructorAvailability(objectAvailability){
+
+    const queryInsertAvailability= `INSERT INTO instructor_availability ( instructor_id, days_week, working_time, lunchtime, blocked_days) VALUES (?,?,?,?,?)`
+
+    const valuesAvailability = [objectAvailability.instructorId, objectAvailability.daysWeek, objectAvailability.workingTime, objectAvailability.lunchtime, objectAvailability.blockedDays]
+
+    try {
+      const availability = await this.database.setData_one(queryInsertAvailability, valuesAvailability)
+      return availability
+
+    } catch (error) {
+      return {
+        status: 'erro',
+        mensage: `${error}`
+      }
+    }
+
+  }
+
+  async getInstructorAvailability(){
+    const queryGetAvailability = `SELECT * FROM instructor_availability`
+
+    try {
+      const instructorAvailability = await this.database.readData_all(queryGetAvailability)
+      return instructorAvailability
+    } catch (error) {
+      return {
+        status: 'erro',
+        mensage: `${error}`
+      }
+    }
+
+  }
+
+  async getInstructorAvailabilityById(idInstructor){
+    const queryGetAvailability= `SELECT * FROM instructor_availability WHERE instructor_id = ?`
+    const valueId = idInstructor
+    try {
+      const instructorAvailability= await this.database.readData_one(queryGetAvailability, valueId)
+      
+      if (instructorAvailability) {
+        instructorAvailability.days_week = this.parseJsonArray(instructorAvailability.days_week, 'days_week')
+        instructorAvailability.blocked_days = this.parseJsonArray(instructorAvailability.blocked_days, 'blocked_days')
+        instructorAvailability.working_time = this.parseJsonArray(instructorAvailability.working_time, 'working_time')
+        instructorAvailability.lunchtime = this.parseJsonArray(instructorAvailability.lunchtime, 'lunchtime') 
+      }
+
+      return instructorAvailability
+
+    } catch (error) {
+      return {
+        status: 'erro',
+        mensage: `${error}`
+      }
+    }
+  }
 }
 
 
@@ -369,6 +447,24 @@ instructorsMocked : [
 //repository.insertIntructor(professor).then(retorno => console.log(retorno))
 //repository.getInstructorByID(34).then(retorno => console.log(retorno))
 
+const repository = new InstructorsRepository()
 
+const availability = {
+  instructorId: 6 ,
+	daysWeek:'[{"id": 1, "display": "SEGUNDA"}, {"id": 2, "display":"TERÇA"}, {"id": 3, "display":"QUARTA"}]',
+	workingTime:`{
+    "init": "07:00",
+    "final": "18:00"
+  }`,
+	lunchtime:`{
+    "init": "11:30",
+    "final": "13:00"
+  }`,
+	blockedDays:'["2026-07-09", "2026-04-29"]',
+}
+
+//repository.insertInstructorAvailability(availability).then(item => console.log(item))
+//repository.getInstructorAvailability().then(item => JSON.stringify(item)).then(item => console.log(item))
+//repository.getInstructorAvailabilityById(1).then(item => JSON.stringify(item)).then(item => console.log(item))
 
 

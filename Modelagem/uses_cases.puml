@@ -17,12 +17,14 @@ rectangle "Plataforma Instrutor Fácil" {
     usecase "Visualizar Agendamentos" as UC6
 
     usecase "Avaliar Instrutor" as UC7
+    usecase "Avaliar aula" as UC12
 
     usecase "Gerenciar Perfil" as UC8
     usecase "Gerenciar Disponibilidade" as UC9
 
     usecase "Receber Solicitação de Aula" as UC10
     usecase "Confirmar Agendamento" as UC11
+
 
 }
 
@@ -33,6 +35,7 @@ Aluno --> UC4
 Aluno --> UC5
 Aluno --> UC6
 Aluno --> UC7
+Aluno --> UC12
 
 
 Instrutor --> UC1

@@ -2,66 +2,86 @@
 
 skinparam classAttributeIconSize 0
 
-abstract class User {
+class Instructor {
     +id : Integer
     +name : String
-    +location : JSON
     +imageProfile : String
+    +rating : Float
+    +totalLessons : Integer
+    +experience : Integer
+    +location : String
+    +pricePerHour : Decimal
     +bio : String
-    +birthDate : Date
-    +phone : String
-    +email : String
-    +cpf : String
-    +createdAt : DateTime
+    +carModel : String
 }
 
 class Student {
-    +documentId : String
-}
-
-class Instructor {
-    +rating : Float
-    +experience : Integer
-    +totalLessons : Integer
-    +pricePerHour : Decimal
-    +availability : JSON
-    +carModel : String
+    +id : Integer
+    +name : String
+    +email : String
+    +phone : Integer
+    +cpf : Integer
+    +documentId : Integer
+    +birthDate : Date
+    +location : String
+    +createdAt : DateTime
 }
 
 class Specialty {
     +id : Integer
     +name : String
-    +description : String
 }
 
 class Category {
     +id : Integer
     +name : String
-    +description : String
 }
 
 class Lesson {
     +id : Integer
-    +scheduledDate : Date
+    +lessonDate : Date
     +startTime : Time
     +endTime : Time
+    +price : Decimal
     +status : String
-    +location : String
+    +lessonLocation : String
     +notes : String
+    +createdAt : DateTime
+}
+
+class Payment {
+    +id : Integer
+    +amount : Decimal
+    +method : String
+    +status : String
+    +paidAt : DateTime
 }
 
 class Review {
     +id : Integer
-    +rating : Integer
+    +ratingScore : Integer
     +comment : String
     +createdAt : DateTime
 }
 
-User <|-- Student
-User <|-- Instructor
+class InstructorAvailability {
+    +id : Integer
+    +daysWeek : String
+    +workingTime : String
+    +lunchtime : String
+    +blockedDays : String
+}
+
+' =====================
+' RELACIONAMENTOS
+' =====================
 
 Instructor "1" -- "0..*" Lesson
 Student "1" -- "0..*" Lesson
+
+Lesson "1" -- "0..1" Payment
+
+Lesson "1" -- "0..1" Review
 
 Instructor "1" -- "0..*" Review
 Student "1" -- "0..*" Review
@@ -71,5 +91,7 @@ Student "*" -- "*" Specialty
 
 Instructor "*" -- "*" Category
 Student "*" -- "*" Category
+
+Instructor "1" -- "1" InstructorAvailability
 
 @enduml
