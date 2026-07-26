@@ -2,7 +2,7 @@
 Busca de disponibilidade
  [x] O sistema devera consultar a disponibilidade do instrutor baseada em seus horários livres
  [x] O sistema levará em consideração a disponibilidade de dias e horários de atuação do instrutor.
- [ ] O sistema deve verificar os agendamentos desse mesmo instrutor em dias e horas
+ [x] O sistema deve verificar os agendamentos desse mesmo instrutor em dias e horas
  [ ] O sistema deve exibir apenas os horários disponíveis encontrados no banco
  [ ] O sistema deve consultar a disponibilidade do instrutor após o aluno confirmar o agendament
 */
@@ -64,12 +64,16 @@ class ScheduleLesson{
         
         const instructorId = scheduling.instructorId
         const instructorLessons= await this.lessonReopo.getDrivingLessonForUsers(null, instructorId)
-        const instructorLessonsTimes= instructorLessons.drive_leasons.map( iten =>{
-            return{
-                init: replaceHours(iten.start_time),
-                final: replaceHours(iten.end_time)
-            }
-        })
+        let instructorLessonsTimes 
+
+        if(instructorLessons.drive_lessons.length){    
+            instructorLessonsTimes= instructorLessons.drive_leasons.map( iten =>{
+                return{
+                    init: replaceHours(iten.start_time),
+                    final: replaceHours(iten.end_time)
+                }
+            })
+        }
 
         const schedulingDate = new Date(scheduling.lessonDate)
         const schedulingDayWeek = schedulingDate.getUTCDay()
@@ -97,7 +101,11 @@ class ScheduleLesson{
         const validateWorkigHour = validateHour(schedulingTime, availabilityWorkTime)
         const validatelunchHour = validateHour(schedulingTime, availabilityLunchTime, false)
         
-        const validateAppointments = instructorLessonsTimes.find(iten => validateHour(schedulingTime, iten))
+        let validateAppointments
+        
+        if(instructorLessons.drive_lessons.length){
+            validateAppointments = instructorLessonsTimes.find(iten => validateHour(schedulingTime, iten))
+        }
 
         
         if(validateBlokedDays || !validateDaysWeek){
@@ -145,16 +153,13 @@ class ScheduleLesson{
 
     }
 
-    searchScheduling(){
-
-    }
 }
 
 const usecase = new ScheduleLesson()
 
 const testeleason =  {
-        instructorId: 1, // passado pla rota 
-        studentId: 3, // passado pela rota 
+        instructorId: 10, // passado pla rota 
+        studentId: 93, // passado pela rota 
         lessonDate: '2026-07-20', // selecionado no front
         startTime: '10:00', // selecionado no front
         endTime: '10:30', // selecionado no front

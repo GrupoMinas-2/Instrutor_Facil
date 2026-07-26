@@ -144,7 +144,7 @@ export class StudentRepository {
     
 
     async getStudentsById(idStudent){
-        const queryJoinStudentRelationById =  ` 
+	const queryJoinStudentRelationById =  ` 
             SELECT
             students.id AS student_id,
             students.name AS student_name,
@@ -251,7 +251,7 @@ const body = {
     
 }
 
-//const repo = new StudentRepository()
+const repo = new StudentRepository()
 //repo.insertStudent(body).then(response => console.log(response))
 /* exemplo de resposta do banco
 [
@@ -437,3 +437,5 @@ const body = {
 	}
 ]
 */
+//repo.getStudentsById(93).then(response => console.log(response))
+//repo.getStudents().then(response => console.log(response))

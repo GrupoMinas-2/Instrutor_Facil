@@ -450,7 +450,7 @@ instructorsMocked : [
 const repository = new InstructorsRepository()
 
 const availability = {
-  instructorId: 6 ,
+  instructorId: 10 ,
 	daysWeek:'[{"id": 1, "display": "SEGUNDA"}, {"id": 2, "display":"TERÇA"}, {"id": 3, "display":"QUARTA"}]',
 	workingTime:`{
     "init": "07:00",
@@ -463,6 +463,7 @@ const availability = {
 	blockedDays:'["2026-07-09", "2026-04-29"]',
 }
 
+//repository.getInstructorByID(1).then(item => console.log(item))
 //repository.insertInstructorAvailability(availability).then(item => console.log(item))
 //repository.getInstructorAvailability().then(item => JSON.stringify(item)).then(item => console.log(item))
 //repository.getInstructorAvailabilityById(1).then(item => JSON.stringify(item)).then(item => console.log(item))

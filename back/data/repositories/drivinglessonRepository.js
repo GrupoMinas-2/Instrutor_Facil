@@ -3,9 +3,9 @@ import { DbAcess } from "../database_acess.js";
 
 export class DrivingLessonRepository {
 
-    database = new DbAcess()
+    #database = new DbAcess()
 
-    callbackLesson(success, dataSearch, actionQuery, resultIsAllray= false){
+    #callbackLesson(success, dataSearch, actionQuery, resultIsAllray= false){
         let response 
 
         if (success){
@@ -13,7 +13,7 @@ export class DrivingLessonRepository {
                 status: 'suceso',
                 action: actionQuery,
                 amount_itens: resultIsAllray? dataSearch.length: 1, 
-                drive_leasons: dataSearch
+                drive_lessons: dataSearch
             }
         }else {
             response = {
@@ -34,11 +34,11 @@ export class DrivingLessonRepository {
         const valuesLesson =  [objectLesson.instructorId, objectLesson.studentId, objectLesson.lessonDate,objectLesson.startTime, objectLesson.endTime, objectLesson.price, objectLesson.status,objectLesson.lessonLocation, objectLesson.notes, createdAt ]
 
         try {
-            const drivingLesson = await this.database.setData_one(queryInsertLesson, valuesLesson)
-            return this.callbackLesson(true, drivingLesson, "REGISTRAR_AULA")
+            const drivingLesson = await this.#database.setData_one(queryInsertLesson, valuesLesson)
+            return this.#callbackLesson(true, drivingLesson, "REGISTRAR_AULA")
             
         } catch (error) {
-            return this.callbackLesson(false, error, "REGISTRAR_AULA")
+            return this.#callbackLesson(false, error, "REGISTRAR_AULA")
         }
 
     }
@@ -46,11 +46,11 @@ export class DrivingLessonRepository {
     async getListDrivingLesson (){
         const queryGetLessons = `SELECT * FROM lessons`
         try {
-            const listDrivingLessons = await this.database.readData_all(queryGetLessons)
-            return this.callbackLesson(true, listDrivingLessons, "BUSCA_TODAS_AULAS", true)
+            const listDrivingLessons = await this.#database.readData_all(queryGetLessons)
+            return this.#callbackLesson(true, listDrivingLessons, "BUSCA_TODAS_AULAS", true)
 
         } catch (error) {
-            return this.callbackLesson(false, error, "BUSCA_TODAS_AULAS")
+            return this.#callbackLesson(false, error, "BUSCA_TODAS_AULAS")
         }
     }
 
@@ -60,11 +60,11 @@ export class DrivingLessonRepository {
         const idForSearch = idDrivingLesson
 
         try {
-            const lesson = await this.database.readData_one(queryGetLesson, idForSearch)
-            return this.callbackLesson(true, lesson, "BUSCA_AULA_POR_ID")
+            const lesson = await this.#database.readData_one(queryGetLesson, idForSearch)
+            return this.#callbackLesson(true, lesson, "BUSCA_AULA_POR_ID")
         
         } catch (error) {
-            return this.callbackLesson(false, error, "BUSCA_AULA_POR_ID")   
+            return this.#callbackLesson(false, error, "BUSCA_AULA_POR_ID")   
         }
     }
 
@@ -82,11 +82,11 @@ export class DrivingLessonRepository {
         }
 
         try {
-            const lessons = await this.database.readData_all(queryGetLesson, idForSearch)
-            return this.callbackLesson(true, lessons, "AULAS_POR_USUARIO", true)
+            const lessons = await this.#database.readData_all(queryGetLesson, idForSearch)
+            return this.#callbackLesson(true, lessons, "AULAS_POR_USUARIO", true)
         
         } catch (error) {
-            return this.callbackLesson(false, error, "AULAS_POR_USUARIO")  
+            return this.#callbackLesson(false, error, "AULAS_POR_USUARIO")  
         }
     }
 }
@@ -116,4 +116,4 @@ const testeleason =  {
 //respository.insertDrivingLesson(testeleason).then(iten => console.log(iten))
 //respository.getListDrivingLesson().then(iten => console.log(iten))
 //respository.getDrivingLessonByID(2).then(iten => console.log(iten))
-//respository.getDrivingLessonForUsers(null, 2).then(iten => console.log(iten))
+//respository.getDrivingLessonForUsers(null, 10).then(iten => console.log(iten, iten.drive_lessons.length))
