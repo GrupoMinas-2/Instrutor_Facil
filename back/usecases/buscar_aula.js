@@ -50,13 +50,34 @@ class SearchDrivingLessons{
         return listResponseLessons
     }
 
-    async searchlessonsByUsers(){
+    async searchlessonsByUsers(idStudent, idIstructor = null){
 
+        if(idStudent){
+            const lessons = await this.#lessonRepo.getDrivingLessonForUsers(idStudent)
+            const studentLesson = await this.#studentRepo.getStudentsById(idStudent)
+
+            return {
+                lessons: lessons, 
+                relations:{
+                    student: studentLesson,
+                }
+            }
+        }
+
+        const lessons = await this.#lessonRepo.getDrivingLessonForUsers(false, idIstructor)
+        const instructorLesson = await this.#instructorRepo.getInstructorByID(idIstructor, false, false)
+
+        return {
+            lessons: lessons, 
+            relations:{
+                student: instructorLesson,
+            }
+        }
     }
 }
 
 const search = new SearchDrivingLessons()
 
-search.searchlessons().then(iten => {
-    console.log(iten)
-})
+//search.searchlessons().then(iten => { console.log(iten) })
+
+search.searchlessonsByUsers(false, 10).then(iten => console.log(iten))
