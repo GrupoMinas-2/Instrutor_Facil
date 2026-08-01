@@ -1,6 +1,6 @@
 import { DbAcess } from "../database_acess.js";
 
-class Financial{
+export class FinancialRepository{
 
     #dataAcess = new DbAcess()
 
@@ -25,7 +25,7 @@ class Financial{
     }
 
 
-    async recordTransactions (objectTransaction){
+    async createRecordTransactions (objectTransaction){
 
         const queryRecord= `INSERT INTO payments (lesson_id, amount, method, status, paid_at, type, value) VALUES (?,?,?,?,?,?,?)`
 
@@ -85,10 +85,10 @@ class Financial{
 
 }
 
-const registro = new Financial()
+const registro = new FinancialRepository()
 
 const objeto = {
-    idLesson: 14,
+    d: 14,
     amount: 1,
     method: "CARTAO_DEBITO",
     type: "LESSON_PAYMENT",
@@ -97,7 +97,7 @@ const objeto = {
 
 //registro.recordTransactions(objeto).then(iten => console.log(iten))
 //registro.getRecordTransactionByID(null, 14).then(iten => console.log(iten))
-registro.getRecordTransactions().then(iten => console.log(iten))
+//kregistro.getRecordTransactions().then(iten => console.log(iten))
 /*
 LESSON_PAYMENT
 
