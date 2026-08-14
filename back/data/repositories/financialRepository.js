@@ -79,8 +79,64 @@ export class FinancialRepository{
             const records = await this.#dataAcess.readData_all(querySelectRecord,idSearch)
             return this.#callbackRecord(true, records, 'BUSCAR_REGISTRO_TRASACAO', true)
         } catch (error) {
-            return this.#callbackRecord(true, error, 'BUSCAR_REGISTRO_TRASACAO')
+            return this.#callbackRecord(false, error, 'BUSCAR_REGISTRO_TRASACAO')
         }
+    }
+
+    async modifyRecordTransaction(idRecord, objectNewRecord, typeAction){
+
+        
+        const tableColuns = [
+            "lesson_id",
+            "amount", 
+            "method", 
+            "status",
+            "type", 
+            "value"
+        ]
+        
+        const colunsModify= tableColuns.filter(iten => {
+            if (Object.keys(objectNewRecord).includes(iten)){
+                return true
+            }
+            return false
+        })
+        
+        if (typeAction === "pach" && colunsModify.length > 0 ){
+            
+            const columnsForQuery = colunsModify.map(iten => `${iten} = ?`) 
+            
+            const queryModfy= `UPDATE payments SET ${columnsForQuery} WHERE id = ?`
+            const valueModify = Object.values(objectNewRecord)
+            valueModify.push(idRecord)
+            
+
+            try {
+                const modified = await this.#dataAcess.setData_one(queryModfy, valueModify)
+                return this.#callbackRecord(true, modified, "ALTERAR_REGISTRO_TRASACAO")
+            } catch (error) {
+                return this.#callbackRecord(false, error, "ALTERAR_REGISTRO_TRASACAO")
+            }
+        }
+
+        if(typeAction === "replace" && colunsModify.length === tableColuns.length){
+
+            const columnsForQuery = colunsModify.map(iten => `${iten} = ?`)
+            const queryModfy= `UPDATE payments SET ${columnsForQuery} WHERE id = ?`
+            const valueModify = Object.values(objectNewRecord)
+            valueModify.push(idRecord)
+
+            try {
+                const modified = await this.#dataAcess.setData_one(queryModfy, valueModify)
+                return this.#callbackRecord(true, modified, "ALTERAR_REGISTRO_TRASACAO")
+            } catch (error) {
+                return this.#callbackRecord(false, error, "ALTERAR_REGISTRO_TRASACAO")
+            }
+        }
+
+        const erro ="não foi possivel realizar a alteração! Confira o tipo de alteração setado e os campos do objeto de alteração!"
+        return this.#callbackRecord(false, erro, "ALTERAR_REGISTRO_TRASACAO")
+
     }
 
 }
@@ -88,22 +144,28 @@ export class FinancialRepository{
 const registro = new FinancialRepository()
 
 const objeto = {
-    d: 14,
+    lesson_id: 14,
     amount: 1,
     method: "CARTAO_DEBITO",
     type: "LESSON_PAYMENT",
     value: 90.50
 }
+const objetoMudanca = {
+    amount: 3, 
+    lesson_id: 10
+}
 
+/*
+types: 
+    LESSON_PAYMENT
+
+    PLATFORM_COMMISSION
+
+    INSTRUCTOR_TRANSFER
+
+    REFUND 
+*/
 //registro.recordTransactions(objeto).then(iten => console.log(iten))
 //registro.getRecordTransactionByID(null, 14).then(iten => console.log(iten))
-//kregistro.getRecordTransactions().then(iten => console.log(iten))
-/*
-LESSON_PAYMENT
-
-PLATFORM_COMMISSION
-
-INSTRUCTOR_TRANSFER
-
-REFUND 
-*/
+//registro.getRecordTransactions().then(iten => console.log(iten))
+registro.modifyRecordTransaction(1,objetoMudanca, "replace" ).then(iten => console.log(iten))

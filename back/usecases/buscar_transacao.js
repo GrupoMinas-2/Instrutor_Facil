@@ -1,6 +1,5 @@
 import { FinancialRepository } from "../data/repositories/financialRepository.js";
 import {SearchDrivingLessons} from "./buscar_aula.js"
-import { DrivingLessonRepository } from "../data/repositories/drivinglessonRepository.js";
 
 class SearchRecordTransaction{
     #financialRepo= new FinancialRepository()

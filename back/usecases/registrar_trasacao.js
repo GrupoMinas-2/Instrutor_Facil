@@ -1,16 +1,16 @@
 import {FinancialRepository} from "../data/repositories/financialRepository.js" 
-import {DrivingLessonRepository} from "../data/repositories/drivinglessonRepository.js"
+import {SearchDrivingLessons} from "./buscar_aula.js"
 
 class FinancialRecord{
 
     #financialRepo = new FinancialRepository()
-    #lessonRepo = new DrivingLessonRepository()
+    #lessonUseCase= new SearchDrivingLessons()
 
-    registerTrasaction(objectTransaction){
+    async registerTrasaction(objectTransaction){
         
-        const newTrasaction= this.#financialRepo.createRecordTransactions(objectTransaction)
+        const newTrasaction= await this.#financialRepo.createRecordTransactions(objectTransaction)
 
-        const lessonOfTransaction= this.#lessonRepo.getDrivingLessonByID(objectTransaction.idLesson)
+        const lessonOfTransaction= await this.#lessonUseCase.searchlessons
 
         return {
             response: newTrasaction,
@@ -20,3 +20,15 @@ class FinancialRecord{
     }
 
 }
+
+const use_case= new FinancialRecord()
+
+const objeto = {
+    lesson_id: 13,
+    amount: 1,
+    method: "CARTAO_DEBITO",
+    type: "LESSON_PAYMENT",
+    value: 90.50
+}
+
+use_case.registerTrasaction(objeto).then(iten => console.log(iten))
