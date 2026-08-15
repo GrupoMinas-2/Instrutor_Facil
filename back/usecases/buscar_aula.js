@@ -2,7 +2,7 @@ import { DrivingLessonRepository } from "../data/repositories/drivinglessonRepos
 import { InstructorsRepository } from "../data/repositories/instructorsRepository.js";
 import { StudentRepository } from "../data/repositories/studentRepository.js";
 
-class SearchDrivingLessons{
+export class SearchDrivingLessons{
     #lessonRepo = new DrivingLessonRepository()
     #instructorRepo = new InstructorsRepository()
     #studentRepo = new StudentRepository()
@@ -30,7 +30,7 @@ class SearchDrivingLessons{
             
         }
 
-        
+        console.log("teste")
         const lessons= await this.#lessonRepo.getListDrivingLesson()
         let listResponseLessons = []
         for(let iten of lessons.drive_lessons){
@@ -80,4 +80,4 @@ const search = new SearchDrivingLessons()
 
 //search.searchlessons().then(iten => { console.log(iten) })
 
-search.searchlessonsByUsers(false, 10).then(iten => console.log(iten))
+//search.searchlessonsByUsers(false, 10).then(iten => console.log(iten))

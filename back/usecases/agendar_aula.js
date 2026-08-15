@@ -139,6 +139,9 @@ class ScheduleLesson{
         if(validateAvailability.available){
             
             const lesson= await this.lessonReopo.insertDrivingLesson(schedulingSelected)
+            
+            // --> registro financeiro <--
+
             return {
                 mensage: 'Agendamento criado',
                 check_availability: validateAvailability, 
