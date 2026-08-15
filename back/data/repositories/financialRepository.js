@@ -36,7 +36,7 @@ export class FinancialRepository{
             objectTransaction.amount, 
             objectTransaction.method, 
             "OPPEN", 
-            createdAt, 
+            createdAt.toLocaleString(), 
             objectTransaction.type,
             objectTransaction.value
         ]
@@ -110,7 +110,6 @@ export class FinancialRepository{
             const valueModify = Object.values(objectNewRecord)
             valueModify.push(idRecord)
             
-
             try {
                 const modified = await this.#dataAcess.setData_one(queryModfy, valueModify)
                 return this.#callbackRecord(true, modified, "ALTERAR_REGISTRO_TRASACAO")
@@ -121,7 +120,7 @@ export class FinancialRepository{
 
         if(typeAction === "replace" && colunsModify.length === tableColuns.length){
 
-            const columnsForQuery = colunsModify.map(iten => `${iten} = ?`)
+            const columnsForQuery = tableColuns.map(iten => `${iten} = ?`)
             const queryModfy= `UPDATE payments SET ${columnsForQuery} WHERE id = ?`
             const valueModify = Object.values(objectNewRecord)
             valueModify.push(idRecord)
@@ -151,12 +150,15 @@ const objeto = {
     value: 90.50
 }
 const objetoMudanca = {
-    amount: 3, 
-    lesson_id: 10
+    lesson_id: 2,
+    amount: 4, 
+    method: "PIX", 
+    status: "COMPLETED",
+    type: "LESSON_PAYMENT", 
+    value: 90
 }
 
-/*
-types: 
+/* types: 
     LESSON_PAYMENT
 
     PLATFORM_COMMISSION
@@ -165,7 +167,16 @@ types:
 
     REFUND 
 */
+/* status: 
+    OPPEN 
+    ON_REVIEW 
+    ACCEPTED
+    REJECTED
+    CANCELLED
+    COMPLETED
+*/ 
+
 //registro.recordTransactions(objeto).then(iten => console.log(iten))
 //registro.getRecordTransactionByID(null, 14).then(iten => console.log(iten))
 //registro.getRecordTransactions().then(iten => console.log(iten))
-registro.modifyRecordTransaction(1,objetoMudanca, "replace" ).then(iten => console.log(iten))
+//registro.modifyRecordTransaction(1,objetoMudanca, "replace" ).then(iten => console.log(iten))

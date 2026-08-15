@@ -24,11 +24,11 @@ class FinancialRecord{
 const use_case= new FinancialRecord()
 
 const objeto = {
-    lesson_id: 13,
+    idLesson: 11,
     amount: 1,
-    method: "CARTAO_DEBITO",
-    type: "LESSON_PAYMENT",
-    value: 90.50
+    method: "CARTAO_CREDITO",
+    type: "PLATFORM_COMMISSION",
+    value: 3.80
 }
 
 use_case.registerTrasaction(objeto).then(iten => console.log(iten))
