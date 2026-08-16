@@ -11,7 +11,7 @@ import { DrivingLessonRepository } from "../data/repositories/drivinglessonRepos
 import { InstructorsRepository } from "../data/repositories/instructorsRepository.js";
 import { StudentRepository } from "../data/repositories/studentRepository.js" 
 
-class ScheduleLesson{
+export class ScheduleLesson{
 
     lessonReopo = new DrivingLessonRepository() 
     instructorsRepo = new InstructorsRepository()
@@ -67,7 +67,7 @@ class ScheduleLesson{
         let instructorLessonsTimes 
 
         if(instructorLessons.drive_lessons.length){    
-            instructorLessonsTimes= instructorLessons.drive_leasons.map( iten =>{
+            instructorLessonsTimes= instructorLessons.drive_lessons.map( iten =>{
                 return{
                     init: replaceHours(iten.start_time),
                     final: replaceHours(iten.end_time)
@@ -181,4 +181,4 @@ const testeleason =  {
     }
 
 //usecase.checkAvailabilityOfInstructor(testeleason).then(iten=> console.log(iten))
-usecase.createScheduling(testeleason).then(iten=> console.log(iten))
+//usecase.createScheduling(testeleason).then(iten=> console.log(iten))
