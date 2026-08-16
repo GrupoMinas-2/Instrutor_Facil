@@ -30,7 +30,7 @@ export class SearchDrivingLessons{
             
         }
 
-        console.log("teste")
+        
         const lessons= await this.#lessonRepo.getListDrivingLesson()
         let listResponseLessons = []
         for(let iten of lessons.drive_lessons){
@@ -39,7 +39,7 @@ export class SearchDrivingLessons{
             const instructorForLesson= await this.#instructorRepo.getInstructorByID(iten.instructor_id, false, false)
 
             listResponseLessons.push( {
-                lessons: iten, 
+                lesson: iten, 
                 relations:{
                     student: studentForLesson,
                     instructor: instructorForLesson
@@ -70,7 +70,7 @@ export class SearchDrivingLessons{
         return {
             lessons: lessons, 
             relations:{
-                student: instructorLesson,
+                instructor: instructorLesson,
             }
         }
     }

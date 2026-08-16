@@ -169,6 +169,7 @@ const objetoMudanca = {
 */
 /* status: 
     OPPEN 
+    PENDING
     ON_REVIEW 
     ACCEPTED
     REJECTED

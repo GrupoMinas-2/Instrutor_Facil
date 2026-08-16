@@ -77,7 +77,7 @@ class SearchRecordTransaction{
 
 }
 
-const use_case= new SearchRecordTransaction()
+//const use_case= new SearchRecordTransaction()
 
 //use_case.searchRecords().then(iten => console.log(iten))
 //use_case.searchRecordByID(2).then(iten => console.log(iten))
