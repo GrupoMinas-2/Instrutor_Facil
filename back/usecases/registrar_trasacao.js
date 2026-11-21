@@ -31,4 +31,4 @@ const objeto = {
     value: 3.80
 }
 
-use_case.registerTrasaction(objeto).then(iten => console.log(iten))
+//use_case.registerTrasaction(objeto).then(iten => console.log(iten))

@@ -20,6 +20,6 @@ class UpdateRecordTransaction{
     }
 }
 
-const use_case = new UpdateRecordTransaction()
+//const use_case = new UpdateRecordTransaction()
 
-use_case.changeStatus(2, "REJECTED").then(iten => console.log(iten))
+//use_case.changeStatus(2, "REJECTED").then(iten => console.log(iten))
