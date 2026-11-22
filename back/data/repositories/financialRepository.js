@@ -29,14 +29,14 @@ export class FinancialRepository{
 
         const queryRecord= `INSERT INTO payments (lesson_id, amount, method, status, paid_at, type, value) VALUES (?,?,?,?,?,?,?)`
 
-        const createdAt= new Date()
+        const createdAt= new Date().toLocaleString()
 
         const valueRecord= [
             objectTransaction.idLesson,
             objectTransaction.amount, 
             objectTransaction.method, 
             "OPPEN", 
-            createdAt.toLocaleString(), 
+            createdAt, 
             objectTransaction.type,
             objectTransaction.value
         ]
@@ -177,7 +177,7 @@ const objetoMudanca = {
     COMPLETED
 */ 
 
-//registro.recordTransactions(objeto).then(iten => console.log(iten))
+registro.createRecordTransactions(objeto).then(iten => console.log(iten))
 //registro.getRecordTransactionByID(null, 14).then(iten => console.log(iten))
 //registro.getRecordTransactions().then(iten => console.log(iten))
 //registro.modifyRecordTransaction(1,objetoMudanca, "replace" ).then(iten => console.log(iten))

@@ -29,7 +29,7 @@ export class DrivingLessonRepository {
 
         const queryInsertLesson = ` INSERT INTO lessons (instructor_id, student_id, lesson_date, start_time, end_time, price, status, lesson_location, notes, created_at) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?)` 
 
-        const createdAt= new Date()
+        const createdAt= new Date().toLocaleString()
         
         const valuesLesson =  [objectLesson.instructorId, objectLesson.studentId, objectLesson.lessonDate,objectLesson.startTime, objectLesson.endTime, objectLesson.price, objectLesson.status,objectLesson.lessonLocation, objectLesson.notes, createdAt ]
 
@@ -114,6 +114,6 @@ const testeleason =  {
 }
 
 //respository.insertDrivingLesson(testeleason).then(iten => console.log(iten))
-//respository.getListDrivingLesson().then(iten => console.log(iten))
+respository.getListDrivingLesson().then(iten => console.log(iten))
 //respository.getDrivingLessonByID(2).then(iten => console.log(iten))
 //respository.getDrivingLessonForUsers(null, 10).then(iten => console.log(iten, iten.drive_lessons.length))

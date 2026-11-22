@@ -1,5 +1,6 @@
 import { json } from 'express';
 import {DbAcess} from '../database_acess.js'
+import {InstructorMapper} from '../Mappes/instructorMapper.js'
 
 export class InstructorsRepository{
   
@@ -129,9 +130,9 @@ export class InstructorsRepository{
           ON categories.id = instructor_categories.category_id;
     `
 
-    const selectJoinRelationsInstructors = await this.database.readData_all(queryJoinInstructorRelation)
+    const selectInstructors = await this.database.readData_all(queryJoinInstructorRelation)
 
-    const listInstructors= []
+    /* const listInstructors= []
     
     for(let iten of selectJoinRelationsInstructors){
       
@@ -173,6 +174,10 @@ export class InstructorsRepository{
     }
     
     return listInstructors
+    */
+
+    return InstructorMapper.parseDataInstructor(selectInstructors) 
+
   }
 
   async getInstructorByID( idInstructor, specialties = true, categories = true){
@@ -221,52 +226,11 @@ export class InstructorsRepository{
     
     //let selectSpecialtiesInstructor = undefined
     //let selectCategoriesInstructor = undefined
-    //let response= []
-    //response.push(selectInstructor)
     
     const selectInstructor = await this.database.readData_all(queryJoinInstructorRelation, value)
-
-    const listDatesInstructors = []
-
-    for (let iten of selectInstructor){
-
-      let instructor = listDatesInstructors.find(inst => inst.id === iten.instructor_id)
-      
-      if(!instructor){
-        instructor= {
-          id: iten.instructor_id,
-          name: iten.instructor_name ,
-          location: JSON.parse(iten.location) ,
-          image_profile: iten.image_profile ,
-          rating: iten.rating ,
-          total_lessons: iten.total_lessons ,
-          experience: iten.experience ,
-          price_per_hour: iten.price_per_hour ,
-          bio: iten.bio ,
-          availability: iten.availability ,
-          car_model: iten.car_model ,
-          specialties: [] ,
-          categories: []
-        }
-        listDatesInstructors.push(instructor)
-      }
-
-      if(!instructor.specialties.find(speciality => speciality.id === iten.specialty_id)){
-        instructor.specialties.push({
-          id: iten.specialty_id,
-          name: iten.specialty_name
-        })
-      }
-
-      if(!instructor.categories.find(category => category.id === iten.category_id)){
-        instructor.categories.push({
-          id: iten.category_id,
-          name: iten.category_name
-        })
-      }
-    }
     
-    return listDatesInstructors
+    return InstructorMapper.parseDataInstructor(selectInstructor)
+
   }
 
 
@@ -463,6 +427,7 @@ const availability = {
 	blockedDays:'["2026-07-09", "2026-04-29"]',
 }
 
+repository.getInstructors().then(iten => console.log(iten))
 //repository.getInstructorByID(1).then(item => console.log(item))
 //repository.insertInstructorAvailability(availability).then(item => console.log(item))
 //repository.getInstructorAvailability().then(item => JSON.stringify(item)).then(item => console.log(item))

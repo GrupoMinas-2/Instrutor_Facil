@@ -20,7 +20,7 @@ export class StudentRepository {
     ]
 
     async insertStudent(student){
-        const created_at = new Date().toISOString();
+        const created_at = new Date().toLocaleString();
 
         const queryInsertStudent = `INSERT INTO students (name, email, phone, cpf, document_id, birthdate, location, created_at ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`; 
 
